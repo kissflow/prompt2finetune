@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt to Fine-Tuning Workshop</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/theme/black.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+        :root {
+            --primary-blue: #1e40af;
+            --primary-dark: #0f172a;
+            --accent-orange: #f97316;
+            --bg-light: #f8fafc;
+            --bg-secondary: #e2e8f0;
+            --text-dark: #1e293b;
+            --text-secondary: #475569;
+            --code-bg: #f1f5f9;
+            --border-color: #cbd5e1;
+        }
+
+        .reveal {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 100%);
+        }
+
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            font-weight: 700;
+            text-transform: none;
+            color: var(--text-dark);
+        }
+
+        .reveal h1 {
+            font-size: 1.8em;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3em;
+        }
+
+        .reveal h2 {
+            font-size: 1.3em;
+            color: var(--primary-blue);
+            margin-bottom: 0.4em;
+        }
+
+        .reveal h3 {
+            font-size: 1em;
+            color: var(--accent-orange);
+            margin-bottom: 0.2em;
+        }
+
+        .reveal h4 {
+            font-size: 0.85em;
+            color: var(--text-dark);
+            margin-bottom: 0.2em;
+        }
+
+        .reveal p, .reveal li {
+            color: var(--text-secondary);
+            font-size: 0.75em;
+            line-height: 1.3;
+            margin: 0.2em 0;
+        }
+
+        .reveal section {
+            text-align: left;
+            padding: 0.5em;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+        }
+
+        .reveal .center-content {
+            text-align: center;
+        }
+
+        /* Title Slide Simple & Elegant */
+        .title-slide {
+            justify-content: center !important;
+            align-items: center;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+        }
+        
+        .title-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(30, 64, 175, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(249, 115, 22, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .title-slide h1 {
+            font-size: 4.2em;
+            margin-bottom: 0.4em;
+            letter-spacing: -1px;
+            font-weight: 800;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            color: var(--primary-dark);
+            line-height: 1.1;
+        }
+
+        .title-number {
+            display: inline-block;
+            font-size: 1em;
+            color: #f97316;
+            margin: 0 0.15em;
+            font-weight: 800;
+            position: relative;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-top: 1em;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .title-tagline {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-top: 0.6em;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+            opacity: 0.9;
+        }
+        
+        .title-divider {
+            width: 100px;
+            height: 3px;
+            background: var(--accent-orange);
+            margin: 1.5em auto;
+            position: relative;
+            z-index: 2;
+            border-radius: 2px;
+        }
+
+        /* Subtle accent elements */
+        .title-accent {
+            position: absolute;
+            top: 20%;
+            right: 15%;
+            width: 4px;
+            height: 60px;
+            background: linear-gradient(180deg, var(--accent-orange), transparent);
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+
+        .title-accent-2 {
+            position: absolute;
+            bottom: 25%;
+            left: 12%;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), transparent);
+            border-radius: 2px;
+            opacity: 0.6;
+        }
+
+        /* Link Styling */
+        .link-box {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.8em;
+            margin: 0.5em auto;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .link-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(30, 64, 175, 0.15);
+            border-color: var(--primary-blue);
+        }
+
+        .link-box a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 0.9em;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.2em;
+        }
+
+        .link-description {
+            color: var(--text-secondary);
+            font-size: 0.7em;
+        }
+
+        /* Agenda Items */
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6em;
+            margin: 0.5em 0;
+        }
+
+        .agenda-item {
+            background: #ffffff;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.6em;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .agenda-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-orange);
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.1);
+        }
+
+        .agenda-icon {
+            font-size: 1.5em;
+            margin-bottom: 0.2em;
+        }
+
+        .agenda-item h3 {
+            color: var(--accent-orange);
+            font-size: 0.9em;
+            margin: 0 0 0.2em 0;
+        }
+        
+        .agenda-item p {
+            font-size: 0.65em;
+            margin: 0;
+            color: var(--text-secondary);
+        }
+
+        /* Strategy Cards */
+        .strategy-card {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 0.3em 0.5em;
+            margin: 0.2em 0;
+        }
+
+        .strategy-label {
+            color: var(--accent-orange);
+            font-weight: 600;
+            font-size: 0.5em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.1em;
+            display: block;
+        }
+
+        .when-to-use {
+            background: rgba(249, 115, 22, 0.08);
+            border-radius: 6px;
+            padding: 0.3em;
+            margin-top: 0.2em;
+            border-left: 2px solid var(--accent-orange);
+        }
+
+        .when-to-use strong {
+            color: var(--primary-blue);
+            font-size: 0.4em;
+        }
+        
+        .when-to-use p {
+            margin: 0;
+            font-size: 0.35em;
+        }
+
+        /* Code Blocks - Keep prompts prominent */
+        .reveal pre {
+            background: #ffffff;
+            border-radius: 6px;
+            border: 2px solid var(--border-color);
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.08);
+            margin: 0.3em 0;
+        }
+
+        .reveal code {
+            font-family: 'Fira Code', monospace;
+            color: var(--text-dark);
+            background: #ffffff;
+            padding: 0.1em 0.3em;
+            border-radius: 3px;
+            font-size: 0.72em;
+        }
+
+        .reveal pre code {
+            padding: 0.6em;
+            max-height: 220px;
+            overflow: auto;
+            display: block;
+            line-height: 1.4;
+        }
+
+        /* Output Box - Reduce size */
+        .output-box {
+            background: rgba(34, 197, 94, 0.05);
+            border-left: 3px solid #22c55e;
+            border-radius: 6px;
+            padding: 0.3em;
+            margin: 0.3em 0;
+            color: var(--text-dark);
+        }
+
+        .output-label {
+            color: #22c55e;
+            font-weight: 600;
+            font-size: 0.35em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.05em;
+            display: block;
+        }
+        
+        .output-box p {
+            margin: 0;
+            font-size: 0.4em;
+            color: var(--text-dark);
+        }
+
+        /* SVG Diagrams */
+        .diagram-container {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 0.4em;
+            margin: 0.3em 0;
+            border: 2px solid var(--border-color);
+        }
+        
+        .diagram-container svg {
+            max-height: 350px;
+        }
+
+        /* Benefits List */
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.4em;
+            margin: 0.4em 0;
+        }
+
+        .benefit-item {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 0.5em;
+            border-left: 3px solid var(--accent-orange);
+            border: 1px solid var(--border-color);
+            border-left: 3px solid var(--accent-orange);
+        }
+
+        .benefit-item h4 {
+            color: var(--accent-orange);
+            margin: 0 0 0.2em 0;
+            font-size: 0.75em;
+        }
+        
+        .benefit-item p {
+            margin: 0;
+            font-size: 0.65em;
+            color: var(--text-secondary);
+        }
+
+        /* Animations */
+        .reveal .slide-fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Two Column Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5em;
+            align-items: start;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: rgba(249, 115, 22, 0.05);
+            border: 2px solid var(--accent-orange);
+            border-radius: 8px;
+            padding: 0.5em;
+            margin: 0.4em 0;
+        }
+        
+        .highlight-box p {
+            margin: 0.2em 0;
+            font-size: 0.7em;
+            color: var(--text-dark);
+        }
+        
+        .highlight-box ul {
+            margin: 0.3em 0;
+            padding-left: 1.2em;
+        }
+        
+        .highlight-box li {
+            margin: 0.1em 0;
+            font-size: 0.7em;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .agenda-grid {
+                grid-template-columns: 1fr;
+            }
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Section Headers */
+        .section-header {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.6em;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 0.2em;
+        }
+        
+        /* Strategy Card p tags */
+        .strategy-card p {
+            margin: 0.15em 0;
+            font-size: 0.55em;
+        }
+        
+        /* Better list styling */
+        .reveal ul {
+            margin: 0.3em 0;
+            padding-left: 1.2em;
+        }
+        
+        .reveal li {
+            margin: 0.15em 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Title Slide -->
+            <section class="title-slide center-content">
+                <!-- Subtle accent elements -->
+                <div class="title-accent"></div>
+                <div class="title-accent-2"></div>
+                
+                <!-- Title Content -->
+                <div style="text-align: center; padding: 2em;">
+                    <h1>
+                        Prompt <span class="title-number">2</span> Finetuning
+                    </h1>
+                    <div class="title-divider"></div>
+                    <p class="subtitle">Practical AI Workshop</p>
+                    <p class="title-tagline">
+                        Mastering LLM Optimization Strategies
+                    </p>
+                </div>
+            </section>
+
+            <!-- Prompt Playground Link -->
+            <section class="center-content">
+                <h2>Interactive Learning Platform</h2>
+                <div class="link-box slide-fade-in">
+                    <a href="https://prompt-playground-ten.vercel.app/admin" target="_blank">
+                        prompt-playground-ten.vercel.app/admin
+                    </a>
+                    <p class="link-description">
+                        Practice and test your prompt engineering skills with real-time scenarios
+                    </p>
+                </div>
+                <p style="text-align: center; margin-top: 0.4em; color: var(--text-secondary); font-size: 0.7em;">
+                    Try different prompting strategies and see immediate results
+                </p>
+            </section>
+
+            <!-- Agenda -->
+            <section>
+                <h2 style="text-align: center;">Workshop Agenda</h2>
+                <div class="agenda-grid">
+                    <div class="agenda-item slide-fade-in">
+                        <div class="agenda-icon">💬</div>
+                        <h3>Effective Prompting</h3>
+                        <p>Master 6 core strategies</p>
+                    </div>
+                    <div class="agenda-item slide-fade-in">
+                        <div class="agenda-icon">🔍</div>
+                        <h3>Implementing RAG</h3>
+                        <p>Retrieval-Augmented Generation</p>
+                    </div>
+                    <div class="agenda-item slide-fade-in">
+                        <div class="agenda-icon">⚙️</div>
+                        <h3>Fine-Tuning</h3>
+                        <p>PEFT with QLora</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GitHub Repository -->
+            <section class="center-content">
+                <h2>Workshop Materials</h2>
+                <div class="link-box slide-fade-in">
+                    <a href="https://github.com/kissflow/prompt2finetune" target="_blank">
+                        github.com/kissflow/prompt2finetune
+                    </a>
+                    <p class="link-description">
+                        Access all notebooks, code examples, and resources
+                    </p>
+                </div>
+                <div class="highlight-box" style="margin-top: 0.4em; text-align: left;">
+                    <p style="font-size: 0.75em;"><strong>Repository includes:</strong></p>
+                    <ul style="font-size: 0.7em;">
+                        <li>Prompting strategy examples</li>
+                        <li>RAG implementation notebooks</li>
+                        <li>Fine-tuning tutorials (TinyLlama)</li>
+                        <li>IPL 2023 dataset for practice</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Section 1: Prompting Strategies -->
+            <section class="center-content">
+                <h1 class="section-header">Prompting Strategies</h1>
+                <p style="font-size: 0.8em; color: var(--text-secondary); margin-top: 0.3em;">
+                    Six Essential Techniques for Effective LLM Communication
+                </p>
+            </section>
+
+            <!-- Zero-Shot Prompting -->
+            <section>
+                <h2>1. Zero-Shot Prompting</h2>
+                <div class="strategy-card">
+                    <p class="strategy-label">Definition</p>
+                    <p>Ask the model to perform a task without providing any examples. The model relies entirely on its pre-training knowledge.</p>
+                </div>
+                
+                <div class="two-column">
+                    <div>
+                        <p class="strategy-label">Example Prompt</p>
+                        <pre><code class="language-text">Summarize the following review:
+
+"This vacuum cleaner is amazing! 
+Lightweight, powerful, and the 
+battery lasts forever. My floors 
+have never been cleaner."</code></pre>
+                    </div>
+                    <div>
+                        <div class="output-box">
+                            <p class="output-label">Output</p>
+                            <p>The review praises a vacuum cleaner for being lightweight, powerful, and having excellent battery life, resulting in exceptionally clean floors.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="when-to-use">
+                    <p><strong>When to use:</strong> Simple, well-defined tasks where the model has strong general knowledge. Ideal for basic summarization, translation, or straightforward Q&A.</p>
+                </div>
+            </section>
+
+            <!-- Few-Shot Prompting -->
+            <section>
+                <h2>2. Few-Shot Prompting</h2>
+                <div class="strategy-card">
+                    <p class="strategy-label">Definition</p>
+                    <p>Provide 2-5 example input-output pairs to guide the model's behavior and demonstrate the expected format.</p>
+                </div>
+                
+                <p class="strategy-label">Example Prompt</p>
+                <pre><code class="language-text">Summarize product reviews:
+
+Review: Battery dies in an hour, camera is blurry.
+Summary: Poor battery life and camera quality.
+
+Review: Fast laptop, lightweight, stunning screen.
+Summary: Fast, lightweight, excellent display.
+
+Review: This phone has great features but overheats.
+Summary:</code></pre>
+
+                <div class="output-box">
+                    <p class="output-label">Output</p>
+                    <p>Good features but has overheating issues.</p>
+                </div>
+
+                <div class="when-to-use">
+                    <p><strong>When to use:</strong> When you need specific output format, working with domain-specific patterns, or maintaining consistent tone and style.</p>
+                </div>
+            </section>
+
+            <!-- Self Reflection -->
+            <section>
+                <h2>3. Self Reflection</h2>
+                <div class="strategy-card">
+                    <p class="strategy-label">Definition</p>
+                    <p>The model generates an initial response, critiques its own output, and then produces a refined version based on that critique.</p>
+                </div>
+                
+                <p class="strategy-label">Example Prompt</p>
+                <pre><code class="language-text">Summarize this review using self-reflection:
+
+Review: "This laptop is decent but has issues..."
+
+Steps:
+1. INITIAL SUMMARY: Write a draft summary
+2. SELF-CRITIQUE: Identify what's missing or unclear
+3. REFINED SUMMARY: Provide an improved version</code></pre>
+
+                <div class="output-box">
+                    <p class="output-label">Output (Refined)</p>
+                    <p>After self-critique, the model produces a more comprehensive summary that includes all key details, emotional tone, and balanced perspective.</p>
+                </div>
+
+                <div class="when-to-use">
+                    <p><strong>When to use:</strong> High-stakes content where quality is critical - technical documentation, creative writing, complex analysis.</p>
+                </div>
+            </section>
+
+            <!-- Chain of Thought -->
+            <section>
+                <h2>4. Chain of Thought</h2>
+                <div class="strategy-card">
+                    <p class="strategy-label">Definition</p>
+                    <p>Require the model to explicitly show its step-by-step reasoning process before providing the final answer.</p>
+                </div>
+                
+                <p class="strategy-label">Example Prompt</p>
+                <pre><code class="language-text">Summarize this review, thinking step by step:
+
+Review: "This vacuum cleaner works well but..."
+
+Let's think step by step:
+1. Identify the product being reviewed
+2. List positive and negative attributes
+3. Combine into a concise summary</code></pre>
+
+                <div class="output-box">
+                    <p class="output-label">Output</p>
+                    <p>1. Product: Vacuum cleaner<br>
+                    2. Positive: Works well; Negative: Heavy, short battery<br>
+                    3. Summary: Effective vacuum with decent performance but suffers from weight and battery life issues.</p>
+                </div>
+
+                <div class="when-to-use">
+                    <p><strong>When to use:</strong> Complex reasoning tasks, math problems, logic puzzles, debugging, or when the reasoning process is as important as the answer.</p>
+                </div>
+            </section>
+
+            <!-- Tree of Thoughts -->
+            <section>
+                <h2>5. Tree of Thoughts</h2>
+                <div class="strategy-card">
+                    <p class="strategy-label">Definition</p>
+                    <p>Explore multiple reasoning paths simultaneously, evaluate different approaches, and select the best solution.</p>
+                </div>
+                
+                <p class="strategy-label">Concept Example</p>
+                <pre><code class="language-text">Problem: Summarize a complex multi-faceted review
+
+Approach 1: Focus on technical aspects → Evaluate
+Approach 2: Emphasize user experience → Evaluate  
+Approach 3: Balance features and value → Evaluate
+
+Select best approach based on evaluation</code></pre>
+
+                <div class="output-box">
+                    <p class="output-label">Result</p>
+                    <p>The model explores multiple summarization strategies, evaluates each path, and selects the most comprehensive approach that balances all aspects.</p>
+                </div>
+
+                <div class="when-to-use">
+                    <p><strong>When to use:</strong> Strategic planning, creative brainstorming, complex optimization, or when multiple valid solutions exist. Note: 10-50x more expensive.</p>
+                </div>
+            </section>
+
+            <!-- Meta Prompting -->
+            <section>
+                <h2>6. Meta Prompting</h2>
+                <div class="strategy-card">
+                    <p class="strategy-label">Definition</p>
+                    <p>Assign the model an explicit role with structured instructions and specific output format requirements.</p>
+                </div>
+                
+                <p class="strategy-label">Example Prompt</p>
+                <pre><code class="language-text">You are an expert product review analyst with 
+10 years of experience. Your goal is to provide 
+concise summaries focusing on key positive and 
+negative aspects.
+
+Review: "This smartphone has..."
+
+Provide summary in format:
+Summary: [Your analysis]
+Rating: [1-5 stars]
+Recommendation: [Yes/No with reason]</code></pre>
+
+                <div class="output-box">
+                    <p class="output-label">Output</p>
+                    <p>Summary: Excellent display and camera but poor battery life.<br>
+                    Rating: 3/5 stars<br>
+                    Recommendation: Yes for photography enthusiasts, No for heavy users.</p>
+                </div>
+
+                <div class="when-to-use">
+                    <p><strong>When to use:</strong> Production systems, API integrations, maintaining consistent behavior across interactions, or when specific output formats are required.</p>
+                </div>
+            </section>
+
+            <!-- Section 2: RAG -->
+            <section class="center-content">
+                <h1 class="section-header">Retrieval-Augmented Generation</h1>
+                <p style="font-size: 0.8em; color: var(--text-secondary); margin-top: 0.3em;">
+                    Extending LLM Knowledge with External Data
+                </p>
+            </section>
+
+            <!-- Why RAG -->
+            <section>
+                <h2>Why RAG?</h2>
+                <div class="benefits-list">
+                    <div class="benefit-item slide-fade-in">
+                        <h4>📚 Knowledge Extension</h4>
+                        <p>Access information beyond the model's training data cutoff</p>
+                    </div>
+                    <div class="benefit-item slide-fade-in">
+                        <h4>🎯 Domain Specificity</h4>
+                        <p>Incorporate proprietary or specialized knowledge without fine-tuning</p>
+                    </div>
+                    <div class="benefit-item slide-fade-in">
+                        <h4>💰 Cost Effective</h4>
+                        <p>Update knowledge without expensive model retraining</p>
+                    </div>
+                    <div class="benefit-item slide-fade-in">
+                        <h4>🔄 Dynamic Updates</h4>
+                        <p>Keep information current with real-time data retrieval</p>
+                    </div>
+                    <div class="benefit-item slide-fade-in">
+                        <h4>📖 Verifiable Sources</h4>
+                        <p>Provide citations and transparency in responses</p>
+                    </div>
+                    <div class="benefit-item slide-fade-in">
+                        <h4>🎨 Reduced Hallucinations</h4>
+                        <p>Ground responses in actual retrieved documents</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RAG System Design -->
+            <section>
+                <h2>RAG System Architecture</h2>
+                <div class="diagram-container">
+                    <svg width="100%" height="400" viewBox="0 0 1000 400">
+                        <!-- User Query -->
+                        <rect x="50" y="170" width="120" height="60" rx="10" fill="#1e3a8a" stroke="#7c3aed" stroke-width="2"/>
+                        <text x="110" y="205" text-anchor="middle" fill="#f8fafc" font-size="16" font-weight="600">User Query</text>
+                        
+                        <!-- Arrow 1 -->
+                        <path d="M 170 200 L 220 200" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Embedding -->
+                        <rect x="220" y="170" width="120" height="60" rx="10" fill="#1e3a8a" stroke="#7c3aed" stroke-width="2"/>
+                        <text x="280" y="195" text-anchor="middle" fill="#f8fafc" font-size="14" font-weight="600">Embedding</text>
+                        <text x="280" y="215" text-anchor="middle" fill="#cbd5e1" font-size="12">Model</text>
+                        
+                        <!-- Arrow 2 -->
+                        <path d="M 340 200 L 390 200" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Vector DB -->
+                        <rect x="390" y="170" width="120" height="60" rx="10" fill="#1e3a8a" stroke="#7c3aed" stroke-width="2"/>
+                        <text x="450" y="195" text-anchor="middle" fill="#f8fafc" font-size="14" font-weight="600">Vector DB</text>
+                        <text x="450" y="215" text-anchor="middle" fill="#cbd5e1" font-size="12">Similarity Search</text>
+                        
+                        <!-- Arrow 3 -->
+                        <path d="M 510 200 L 560 200" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Retrieved Context -->
+                        <rect x="560" y="170" width="140" height="60" rx="10" fill="#1e3a8a" stroke="#7c3aed" stroke-width="2"/>
+                        <text x="630" y="195" text-anchor="middle" fill="#f8fafc" font-size="14" font-weight="600">Retrieved</text>
+                        <text x="630" y="215" text-anchor="middle" fill="#cbd5e1" font-size="12">Context</text>
+                        
+                        <!-- Arrow 4 -->
+                        <path d="M 700 200 L 750 200" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- LLM -->
+                        <rect x="750" y="150" width="100" height="100" rx="10" fill="#7c3aed" stroke="#fbbf24" stroke-width="3"/>
+                        <text x="800" y="195" text-anchor="middle" fill="#f8fafc" font-size="16" font-weight="700">LLM</text>
+                        <text x="800" y="215" text-anchor="middle" fill="#cbd5e1" font-size="12">Generate</text>
+                        
+                        <!-- Arrow 5 -->
+                        <path d="M 800 250 L 800 300" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowhead-green)"/>
+                        
+                        <!-- Response -->
+                        <rect x="740" y="300" width="120" height="60" rx="10" fill="#22c55e" stroke="#fbbf24" stroke-width="2"/>
+                        <text x="800" y="335" text-anchor="middle" fill="#0f172a" font-size="16" font-weight="600">Response</text>
+                        
+                        <!-- Documents (top) -->
+                        <rect x="370" y="50" width="80" height="70" rx="5" fill="rgba(251, 191, 36, 0.2)" stroke="#fbbf24" stroke-width="2"/>
+                        <text x="410" y="80" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="600">Documents</text>
+                        <text x="410" y="100" text-anchor="middle" fill="#cbd5e1" font-size="11">Knowledge</text>
+                        
+                        <!-- Arrow from documents to vector DB -->
+                        <path d="M 430 120 L 450 170" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+                        
+                        <!-- Arrow definitions -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#fbbf24"/>
+                            </marker>
+                            <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#22c55e"/>
+                            </marker>
+                        </defs>
+                    </svg>
+                </div>
+                <p style="text-align: center; color: var(--text-secondary); margin-top: 0.3em; font-size: 0.7em;">
+                    Semantic search retrieves relevant context to augment LLM responses
+                </p>
+            </section>
+
+            <!-- MCP System Design -->
+            <section>
+                <h2>Model Context Protocol (MCP)</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 0.4em; font-size: 0.7em;">
+                    A standardized protocol for connecting AI models to external data sources and tools
+                </p>
+                <div class="diagram-container">
+                    <svg width="100%" height="450" viewBox="0 0 1000 450">
+                        <!-- AI Application -->
+                        <rect x="50" y="180" width="150" height="80" rx="10" fill="#7c3aed" stroke="#fbbf24" stroke-width="3"/>
+                        <text x="125" y="215" text-anchor="middle" fill="#f8fafc" font-size="16" font-weight="700">AI Application</text>
+                        <text x="125" y="235" text-anchor="middle" fill="#cbd5e1" font-size="12">(Claude, GPT, etc.)</text>
+                        
+                        <!-- MCP Protocol (center) -->
+                        <rect x="350" y="150" width="300" height="140" rx="15" fill="rgba(251, 191, 36, 0.2)" stroke="#fbbf24" stroke-width="4"/>
+                        <text x="500" y="185" text-anchor="middle" fill="#fbbf24" font-size="20" font-weight="700">MCP Protocol</text>
+                        <text x="500" y="210" text-anchor="middle" fill="#cbd5e1" font-size="13">Standardized Connection Layer</text>
+                        
+                        <!-- MCP Components -->
+                        <rect x="370" y="230" width="120" height="40" rx="5" fill="#1e3a8a" stroke="#7c3aed" stroke-width="2"/>
+                        <text x="430" y="255" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="600">Resources</text>
+                        
+                        <rect x="510" y="230" width="120" height="40" rx="5" fill="#1e3a8a" stroke="#7c3aed" stroke-width="2"/>
+                        <text x="570" y="255" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="600">Tools</text>
+                        
+                        <!-- Arrows from AI to MCP -->
+                        <path d="M 200 220 L 350 220" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Data Sources -->
+                        <g>
+                            <!-- Database -->
+                            <rect x="750" y="50" width="180" height="70" rx="10" fill="#1e3a8a" stroke="#7c3aed" stroke-width="2"/>
+                            <text x="840" y="85" text-anchor="middle" fill="#f8fafc" font-size="14" font-weight="600">📊 Databases</text>
+                            
+                            <!-- APIs -->
+                            <rect x="750" y="150" width="180" height="70" rx="10" fill="#1e3a8a" stroke="#7c3aed" stroke-width="2"/>
+                            <text x="840" y="185" text-anchor="middle" fill="#f8fafc" font-size="14" font-weight="600">🔌 APIs</text>
+                            
+                            <!-- File Systems -->
+                            <rect x="750" y="250" width="180" height="70" rx="10" fill="#1e3a8a" stroke="#7c3aed" stroke-width="2"/>
+                            <text x="840" y="285" text-anchor="middle" fill="#f8fafc" font-size="14" font-weight="600">📁 File Systems</text>
+                            
+                            <!-- Tools -->
+                            <rect x="750" y="350" width="180" height="70" rx="10" fill="#1e3a8a" stroke="#7c3aed" stroke-width="2"/>
+                            <text x="840" y="385" text-anchor="middle" fill="#f8fafc" font-size="14" font-weight="600">🛠️ External Tools</text>
+                        </g>
+                        
+                        <!-- Arrows from MCP to Data Sources -->
+                        <path d="M 650 200 L 750 85" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                        <path d="M 650 210 L 750 185" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                        <path d="M 650 230 L 750 285" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                        <path d="M 650 250 L 750 385" stroke="#fbbf24" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    </svg>
+                </div>
+                <div class="highlight-box">
+                    <p style="font-size: 0.7em;"><strong>Key Benefits:</strong> Unified interface for multiple data sources • Secure and controlled access • Easy integration • Support for real-time data</p>
+                </div>
+            </section>
+
+            <!-- Section 3: Fine-Tuning -->
+            <section class="center-content">
+                <h1 class="section-header">Fine-Tuning</h1>
+                <p style="font-size: 0.8em; color: var(--text-secondary); margin-top: 0.3em;">
+                    Adapting Pre-trained Models to Your Specific Needs
+                </p>
+            </section>
+
+            <!-- Why Fine-Tuning -->
+            <section>
+                <h2>Why Fine-Tuning?</h2>
+                <div class="two-column">
+                    <div>
+                        <div class="benefit-item slide-fade-in">
+                            <h4>🎯 Task Specialization</h4>
+                            <p>Optimize model performance for specific domains or tasks beyond what prompting can achieve</p>
+                        </div>
+                        <div class="benefit-item slide-fade-in">
+                            <h4>📊 Consistent Output</h4>
+                            <p>Train the model to follow specific formats, styles, or guidelines reliably</p>
+                        </div>
+                        <div class="benefit-item slide-fade-in">
+                            <h4>🧠 Knowledge Integration</h4>
+                            <p>Embed domain-specific knowledge directly into the model's parameters</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="benefit-item slide-fade-in">
+                            <h4>💰 Cost Reduction</h4>
+                            <p>Reduce inference costs with shorter prompts and faster responses</p>
+                        </div>
+                        <div class="benefit-item slide-fade-in">
+                            <h4>🔒 Privacy & Control</h4>
+                            <p>Keep sensitive data within your infrastructure without sending to external APIs</p>
+                        </div>
+                        <div class="benefit-item slide-fade-in">
+                            <h4>⚡ Better Performance</h4>
+                            <p>Achieve superior results on specialized tasks compared to few-shot prompting</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="highlight-box" style="margin-top: 0.4em;">
+                    <p style="text-align: center; font-size: 0.7em;"><strong>When Prompting Isn't Enough:</strong> Complex domain knowledge • Strict format requirements • High-volume production use • Proprietary behavior patterns</p>
+                </div>
+            </section>
+
+            <!-- PEFT-QLORA Architecture -->
+            <section>
+                <h2>PEFT with QLora Architecture</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 0.4em; font-size: 0.7em;">
+                    Parameter-Efficient Fine-Tuning using Quantized Low-Rank Adaptation
+                </p>
+                <div class="diagram-container">
+                    <svg width="100%" height="500" viewBox="0 0 1000 500">
+                        <!-- Base Model -->
+                        <rect x="50" y="180" width="180" height="140" rx="10" fill="#1e3a8a" stroke="#7c3aed" stroke-width="3"/>
+                        <text x="140" y="220" text-anchor="middle" fill="#f8fafc" font-size="18" font-weight="700">Base Model</text>
+                        <text x="140" y="245" text-anchor="middle" fill="#cbd5e1" font-size="13">(e.g., LLaMA, Mistral)</text>
+                        <text x="140" y="270" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">7B-70B Parameters</text>
+                        <text x="140" y="295" text-anchor="middle" fill="#cbd5e1" font-size="11">Frozen Weights ❄️</text>
+                        
+                        <!-- Arrow 1 -->
+                        <path d="M 230 250 L 300 250" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Quantization -->
+                        <rect x="300" y="180" width="160" height="140" rx="10" fill="#7c3aed" stroke="#fbbf24" stroke-width="3"/>
+                        <text x="380" y="215" text-anchor="middle" fill="#f8fafc" font-size="16" font-weight="700">Quantization</text>
+                        <text x="380" y="240" text-anchor="middle" fill="#cbd5e1" font-size="13">FP16 → 4-bit</text>
+                        <text x="380" y="270" text-anchor="middle" fill="#22c55e" font-size="14" font-weight="600">75% Memory ↓</text>
+                        <text x="380" y="295" text-anchor="middle" fill="#cbd5e1" font-size="11">NormalFloat 4-bit</text>
+                        
+                        <!-- Arrow 2 -->
+                        <path d="M 460 250 L 530 250" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- LoRA Adapters -->
+                        <g>
+                            <rect x="530" y="180" width="180" height="140" rx="10" fill="#1e3a8a" stroke="#7c3aed" stroke-width="3"/>
+                            <text x="620" y="215" text-anchor="middle" fill="#f8fafc" font-size="16" font-weight="700">LoRA Adapters</text>
+                            <text x="620" y="240" text-anchor="middle" fill="#cbd5e1" font-size="12">Low-Rank Matrices</text>
+                            
+                            <!-- Small adapter boxes -->
+                            <rect x="550" y="255" width="60" height="30" rx="3" fill="rgba(251, 191, 36, 0.3)" stroke="#fbbf24" stroke-width="2"/>
+                            <text x="580" y="275" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">Adapter A</text>
+                            
+                            <rect x="620" y="255" width="60" height="30" rx="3" fill="rgba(251, 191, 36, 0.3)" stroke="#fbbf24" stroke-width="2"/>
+                            <text x="650" y="275" text-anchor="middle" fill="#fbbf24" font-size="10" font-weight="600">Adapter B</text>
+                            
+                            <text x="620" y="305" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="600">Only 0.1-1% trainable</text>
+                        </g>
+                        
+                        <!-- Arrow 3 -->
+                        <path d="M 710 250 L 780 250" stroke="#fbbf24" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Fine-tuned Model -->
+                        <rect x="780" y="180" width="180" height="140" rx="10" fill="#22c55e" stroke="#fbbf24" stroke-width="3"/>
+                        <text x="870" y="220" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="700">Fine-tuned</text>
+                        <text x="870" y="245" text-anchor="middle" fill="#0f172a" font-size="18" font-weight="700">Model</text>
+                        <text x="870" y="275" text-anchor="middle" fill="#0f172a" font-size="13">Task-Optimized</text>
+                        <text x="870" y="295" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="600">✨ Ready to Use</text>
+                        
+                        <!-- Training Data (top) -->
+                        <rect x="300" y="40" width="160" height="80" rx="8" fill="rgba(251, 191, 36, 0.2)" stroke="#fbbf24" stroke-width="2"/>
+                        <text x="380" y="70" text-anchor="middle" fill="#fbbf24" font-size="15" font-weight="600">Training Data</text>
+                        <text x="380" y="92" text-anchor="middle" fill="#cbd5e1" font-size="12">Domain-Specific</text>
+                        <text x="380" y="108" text-anchor="middle" fill="#cbd5e1" font-size="12">Examples</text>
+                        
+                        <!-- Arrow from training data -->
+                        <path d="M 450 120 L 620 180" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5,5" fill="none" marker-end="url(#arrowhead)"/>
+                        
+                        <!-- Benefits callouts -->
+                        <g>
+                            <rect x="100" y="370" width="180" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" stroke-width="2"/>
+                            <text x="190" y="395" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="600">💰 Memory Efficient</text>
+                            <text x="190" y="415" text-anchor="middle" fill="#cbd5e1" font-size="11">Run on single GPU</text>
+                            
+                            <rect x="410" y="370" width="180" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" stroke-width="2"/>
+                            <text x="500" y="395" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="600">⚡ Fast Training</text>
+                            <text x="500" y="415" text-anchor="middle" fill="#cbd5e1" font-size="11">Hours, not days</text>
+                            
+                            <rect x="720" y="370" width="180" height="60" rx="8" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" stroke-width="2"/>
+                            <text x="810" y="395" text-anchor="middle" fill="#22c55e" font-size="13" font-weight="600">🎯 High Quality</text>
+                            <text x="810" y="415" text-anchor="middle" fill="#cbd5e1" font-size="11">Near full fine-tuning</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="highlight-box">
+                    <p style="text-align: center; font-size: 0.7em;"><strong>Perfect Balance:</strong> Train 70B models on consumer GPUs • Maintain base model quality • Rapid iteration • Easy deployment</p>
+                </div>
+            </section>
+
+            <!-- Closing Slide -->
+            <section class="center-content">
+                <h1 class="section-header">The Complete AI Toolkit</h1>
+                <div class="agenda-grid" style="margin-top: 0.5em;">
+                    <div class="agenda-item">
+                        <div class="agenda-icon">💬</div>
+                        <h3>Prompting</h3>
+                        <p style="font-size: 0.65em;">Quick wins<br>Zero infrastructure<br>Immediate results</p>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-icon">🔍</div>
+                        <h3>RAG</h3>
+                        <p style="font-size: 0.65em;">Dynamic knowledge<br>Verifiable sources<br>Easy updates</p>
+                    </div>
+                    <div class="agenda-item">
+                        <div class="agenda-icon">⚙️</div>
+                        <h3>Fine-Tuning</h3>
+                        <p style="font-size: 0.65em;">Maximum control<br>Best performance<br>Domain mastery</p>
+                    </div>
+                </div>
+                <div class="highlight-box" style="margin-top: 0.8em;">
+                    <h3 style="color: var(--accent-gold); text-align: center; margin-bottom: 0.3em; font-size: 0.95em;">Ready to Build?</h3>
+                    <p style="text-align: center; font-size: 0.8em; color: var(--text-light); margin: 0.3em 0;">
+                        <strong>github.com/kissflow/prompt2finetune</strong>
+                    </p>
+                    <p style="text-align: center; color: var(--text-secondary); margin-top: 0.3em; font-size: 0.7em;">
+                        All notebooks, examples, and resources are ready for you to explore
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.5.0/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            center: false,
+            width: 1280,
+            height: 720,
+            margin: 0.05,
+            minScale: 0.2,
+            maxScale: 2.0,
+            slideNumber: 'c/t',
+            controls: true,
+            progress: true,
+            showSlideNumber: 'all',
+            autoPlayMedia: true,
+            preloadIframes: true,
+            
+            // Custom animations
+            viewDistance: 3,
+            mobileViewDistance: 2
+        });
+
+        // Add fade-in animation to elements
+        Reveal.on('slidechanged', event => {
+            const fadeElements = event.currentSlide.querySelectorAll('.slide-fade-in');
+            fadeElements.forEach((el, index) => {
+                setTimeout(() => {
+                    el.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
+
