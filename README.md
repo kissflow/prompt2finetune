@@ -39,7 +39,9 @@ Practical AI: From Prompting to Fine-Tuning
 
 
 ### Finetuning:
-- Open this colab <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Llama_4bit_Before_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Before Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Llama_4bit_Before_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+
+- After Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Llama_4bit_after_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 - Click on Connect and `Select Change runtime type`
 ![alt text](images//connect.png)
