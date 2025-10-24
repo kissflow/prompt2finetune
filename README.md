@@ -16,12 +16,15 @@ Practical AI: From Prompting to Fine-Tuning
   - click on the `create new key` button and fill up the name and leave the next fields blank and click on create. Copy the key and paste it in the any notepad
   ![alt text](images//createkey.png)
 
+  - copy the created key
+  ![alt text](images//key-copy.png)
+
   - Goto <a href="https://colab.research.google.com/" target="_blank">colab</a> and click on the `key` icon on the left menu.
   ![alt text](images//setup-key.png)
 
   - Click on the `Add New Secret`.
 
-  - Give Secret `Name` as `OPENAI_API_KEY` and set `Value` to the key we have created in openrouter.
+  - Give Secret `Name` as `API_KEY` and set `Value` to the key we have created in openrouter.
 
   - Turn on the `Note Book Access` toggle to allow this secret to consume in the colab notebooks.
 
@@ -33,10 +36,6 @@ Practical AI: From Prompting to Fine-Tuning
 
 ### RAG Implementation
 <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Product_Review_using_RAG.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-
-### MCP Implementation
-<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/amazon_review_mcp.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-
 
 ### Finetuning:
 - Before Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Llama_4bit_Before_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
