@@ -101,24 +101,66 @@
         }
         
         .title-slide h1 {
-            font-size: 4.2em;
-            margin-bottom: 0.4em;
+            font-size: 3.2em;
+            margin-bottom: 0.2em;
             letter-spacing: -1px;
             font-weight: 800;
             text-align: center;
             position: relative;
             z-index: 2;
             color: var(--primary-dark);
-            line-height: 1.1;
+            line-height: 0.9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.02em;
+        }
+
+        .title-word {
+            font-size: 0.8em;
+            font-weight: 800;
+            color: var(--primary-dark);
+            line-height: 1;
         }
 
         .title-number {
-            display: inline-block;
-            font-size: 1em;
-            color: #f97316;
-            margin: 0 0.15em;
-            font-weight: 800;
+            color: #f97316 !important;
+            font-size: 1.1em;
+            font-weight: 900;
             position: relative;
+            z-index: 3;
+            text-shadow: 0 2px 4px rgba(249, 115, 22, 0.4);
+            transform: translateY(-0.02em);
+            margin: 0.02em 0;
+            background: linear-gradient(45deg, #f97316, #ff6b35);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .title-number::before {
+            content: '';
+            position: absolute;
+            top: -0.2em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 0.2em;
+            background: linear-gradient(180deg, transparent, #f97316);
+            opacity: 0.6;
+        }
+
+        .title-number::after {
+            content: '';
+            position: absolute;
+            bottom: -0.2em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 0.2em;
+            background: linear-gradient(0deg, transparent, #f97316);
+            opacity: 0.6;
         }
 
         .subtitle {
@@ -203,6 +245,53 @@
         .link-description {
             color: var(--text-secondary);
             font-size: 0.7em;
+        }
+
+        /* Litmus Test Link Styling */
+        .litmus-link-box {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark));
+            border: 3px solid var(--accent-orange);
+            border-radius: 20px;
+            padding: 2em 3em;
+            margin: 2em auto;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(30, 64, 175, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .litmus-link-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .litmus-link-box:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(30, 64, 175, 0.3);
+            border-color: #ff6b35;
+        }
+
+        .litmus-link-box:hover::before {
+            left: 100%;
+        }
+
+        .litmus-link-box a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.4em;
+            font-weight: 700;
+            display: block;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
         }
 
         /* Agenda Items */
@@ -450,6 +539,348 @@
             text-align: center;
             margin-bottom: 0.2em;
         }
+
+        /* Prompting Strategies Slide Styling */
+        .prompting-strategies-slide {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prompting-strategies-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(30, 64, 175, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(30, 64, 175, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .strategies-title-container {
+            position: relative;
+            z-index: 2;
+            padding: 3em 2em;
+            text-align: center;
+        }
+
+        .strategies-title-container .section-header {
+            font-size: 2.2em;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin: 0;
+            position: relative;
+            animation: titleSlideIn 1s ease-out;
+        }
+
+        .strategies-title-container::after {
+            content: '';
+            position: absolute;
+            bottom: 1em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+            border-radius: 2px;
+            animation: dividerGrow 1.5s ease-out 0.5s both;
+        }
+
+        /* Decorative elements */
+        .strategies-title-container::before {
+            content: '💬';
+            position: absolute;
+            top: -0.5em;
+            right: 10%;
+            font-size: 2em;
+            opacity: 0.1;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes titleSlideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes dividerGrow {
+            0% {
+                width: 0;
+                opacity: 0;
+            }
+            100% {
+                width: 100px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes floatIcon {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* RAG Title Slide Styling */
+        .rag-title-slide {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rag-title-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(30, 64, 175, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(30, 64, 175, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .rag-title-container {
+            position: relative;
+            z-index: 2;
+            padding: 3em 2em;
+            text-align: center;
+        }
+
+        .rag-title-container .section-header {
+            font-size: 2.2em;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin: 0;
+            position: relative;
+            animation: titleSlideIn 1s ease-out;
+        }
+
+        .rag-title-container::after {
+            content: '';
+            position: absolute;
+            bottom: 1em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+            border-radius: 2px;
+            animation: dividerGrow 1.5s ease-out 0.5s both;
+        }
+
+        /* Decorative elements for RAG */
+        .rag-title-container::before {
+            content: '🔍';
+            position: absolute;
+            top: -0.5em;
+            right: 10%;
+            font-size: 2em;
+            opacity: 0.1;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        /* Trade-offs Table Styling */
+        .tradeoffs-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.8em;
+            margin: 0.5em 0;
+        }
+
+        .tradeoffs-table {
+            background: #ffffff;
+            border-radius: 8px;
+            border: 2px solid var(--border-color);
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(30, 64, 175, 0.1);
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .table-header {
+            display: grid;
+            grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 0.7fr 1fr;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-dark));
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.6em;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-cell {
+            padding: 0.5em 0.3em;
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .header-cell:last-child {
+            border-right: none;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 0.7fr 0.7fr 0.7fr 0.7fr 1fr;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .table-row:hover {
+            background-color: rgba(30, 64, 175, 0.05);
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .strategy-cell {
+            padding: 0.4em 0.3em;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 0.6em;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .metric-cell {
+            padding: 0.4em 0.2em;
+            text-align: center;
+            font-size: 0.55em;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .use-case-cell {
+            padding: 0.4em 0.3em;
+            font-size: 0.55em;
+            color: var(--text-secondary);
+            border-right: none;
+        }
+
+        /* Metric color coding */
+        .metric-cell.low {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .metric-cell.medium {
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .metric-cell.high {
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .metric-cell.very-high {
+            color: #16a34a;
+            background: rgba(22, 163, 74, 0.1);
+        }
+
+        .metric-cell.fast {
+            color: #22c55e;
+            background: rgba(34, 197, 94, 0.1);
+        }
+
+        .metric-cell.slow {
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .metric-cell.very-slow {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        /* Quick Guide Styling */
+        .quick-guide {
+            background: linear-gradient(135deg, var(--bg-secondary), #ffffff);
+            border-radius: 8px;
+            padding: 0.6em;
+            border: 1px solid var(--border-color);
+            margin-top: 0.5em;
+        }
+
+        .quick-guide h3 {
+            color: var(--primary-blue);
+            font-size: 0.7em;
+            margin-bottom: 0.4em;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .guide-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3em;
+            justify-content: center;
+        }
+
+        .guide-item {
+            background: #ffffff;
+            border: 1px solid var(--accent-orange);
+            border-radius: 15px;
+            padding: 0.2em 0.5em;
+            font-size: 0.5em;
+            color: var(--text-dark);
+            font-weight: 600;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .guide-item:hover {
+            background: var(--accent-orange);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tradeoffs-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-header,
+            .table-row {
+                grid-template-columns: 1fr;
+                gap: 0.2em;
+            }
+            
+            .header-cell,
+            .strategy-cell,
+            .metric-cell,
+            .use-case-cell {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 0.3em 0.2em;
+                font-size: 0.5em;
+            }
+            
+            .guide-items {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .guide-item {
+                font-size: 0.45em;
+                padding: 0.3em 0.6em;
+            }
+        }
         
         /* Strategy Card p tags */
         .strategy-card p {
@@ -481,7 +912,9 @@
                 <!-- Title Content -->
                 <div style="text-align: center; padding: 2em;">
                     <h1>
-                        Prompt <span class="title-number">2</span> Finetuning
+                        <div class="title-word">Prompt</div>
+                        <div class="title-number">2</div>
+                        <div class="title-word">Finetuning</div>
                     </h1>
                     <div class="title-divider"></div>
                     <p class="subtitle">Practical AI Workshop</p>
@@ -491,20 +924,14 @@
                 </div>
             </section>
 
-            <!-- Prompt Playground Link -->
+            <!-- Litmus Test Link -->
             <section class="center-content">
-                <h2>Interactive Learning Platform</h2>
-                <div class="link-box slide-fade-in">
+                <h2>Let's take a litmus test</h2>
+                <div class="litmus-link-box slide-fade-in">
                     <a href="https://prompt-playground-ten.vercel.app/admin" target="_blank">
                         prompt-playground-ten.vercel.app/admin
                     </a>
-                    <p class="link-description">
-                        Practice and test your prompt engineering skills with real-time scenarios
-                    </p>
                 </div>
-                <p style="text-align: center; margin-top: 0.4em; color: var(--text-secondary); font-size: 0.7em;">
-                    Try different prompting strategies and see immediate results
-                </p>
             </section>
 
             <!-- Agenda -->
@@ -540,7 +967,7 @@
                         Access all notebooks, code examples, and resources
                     </p>
                 </div>
-                <div class="highlight-box" style="margin-top: 0.4em; text-align: left;">
+                <!-- <div class="highlight-box" style="margin-top: 0.4em; text-align: left;">
                     <p style="font-size: 0.75em;"><strong>Repository includes:</strong></p>
                     <ul style="font-size: 0.7em;">
                         <li>Prompting strategy examples</li>
@@ -548,15 +975,14 @@
                         <li>Fine-tuning tutorials (TinyLlama)</li>
                         <li>IPL 2023 dataset for practice</li>
                     </ul>
-                </div>
+                </div> -->
             </section>
 
             <!-- Section 1: Prompting Strategies -->
-            <section class="center-content">
-                <h1 class="section-header">Prompting Strategies</h1>
-                <p style="font-size: 0.8em; color: var(--text-secondary); margin-top: 0.3em;">
-                    Six Essential Techniques for Effective LLM Communication
-                </p>
+            <section class="center-content prompting-strategies-slide">
+                <div class="strategies-title-container">
+                    <h1 class="section-header">Prompting Strategies</h1>
+                </div>
             </section>
 
             <!-- Zero-Shot Prompting -->
@@ -738,12 +1164,92 @@ Recommendation: [Yes/No with reason]</code></pre>
                 </div>
             </section>
 
+            <!-- Trade-offs Summary -->
+            <section>
+                <h2>Strategy Trade-offs: Which One to Choose?</h2>
+                <div class="tradeoffs-container">
+                    <div class="tradeoffs-table">
+                        <div class="table-header">
+                            <div class="header-cell">Strategy</div>
+                            <div class="header-cell">Accuracy</div>
+                            <div class="header-cell">Speed</div>
+                            <div class="header-cell">Cost</div>
+                            <div class="header-cell">Complexity</div>
+                            <div class="header-cell">Best Use Case</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="strategy-cell">Zero-Shot</div>
+                            <div class="metric-cell medium">Medium</div>
+                            <div class="metric-cell fast">Fast</div>
+                            <div class="metric-cell low">Low</div>
+                            <div class="metric-cell low">Low</div>
+                            <div class="use-case-cell">Simple tasks</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="strategy-cell">Few-Shot</div>
+                            <div class="metric-cell high">High</div>
+                            <div class="metric-cell fast">Fast</div>
+                            <div class="metric-cell medium">Medium</div>
+                            <div class="metric-cell low">Low</div>
+                            <div class="use-case-cell">Consistent formatting</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="strategy-cell">Self Reflection</div>
+                            <div class="metric-cell very-high">Very High</div>
+                            <div class="metric-cell slow">Slow</div>
+                            <div class="metric-cell high">High</div>
+                            <div class="metric-cell medium">Medium</div>
+                            <div class="use-case-cell">High-quality content</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="strategy-cell">Chain of Thought</div>
+                            <div class="metric-cell high">High</div>
+                            <div class="metric-cell medium">Medium</div>
+                            <div class="metric-cell medium">Medium</div>
+                            <div class="metric-cell low">Low</div>
+                            <div class="use-case-cell">Complex reasoning</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="strategy-cell">Tree of Thoughts</div>
+                            <div class="metric-cell very-high">Very High</div>
+                            <div class="metric-cell very-slow">Very Slow</div>
+                            <div class="metric-cell very-high">Very High</div>
+                            <div class="metric-cell high">High</div>
+                            <div class="use-case-cell">Creative problems</div>
+                        </div>
+                        
+                        <div class="table-row">
+                            <div class="strategy-cell">Meta Prompting</div>
+                            <div class="metric-cell high">High</div>
+                            <div class="metric-cell fast">Fast</div>
+                            <div class="metric-cell low">Low</div>
+                            <div class="metric-cell medium">Medium</div>
+                            <div class="use-case-cell">Production systems</div>
+                        </div>
+                    </div>
+                    
+                    <div class="quick-guide">
+                        <h3>Quick Guide</h3>
+                        <div class="guide-items">
+                            <span class="guide-item">Speed & Simplicity → Zero-Shot</span>
+                            <span class="guide-item">Consistency → Few-Shot</span>
+                            <span class="guide-item">Reasoning → Chain of Thought</span>
+                            <span class="guide-item">Quality → Self Reflection</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Section 2: RAG -->
-            <section class="center-content">
-                <h1 class="section-header">Retrieval-Augmented Generation</h1>
-                <p style="font-size: 0.8em; color: var(--text-secondary); margin-top: 0.3em;">
-                    Extending LLM Knowledge with External Data
-                </p>
+            <section class="center-content rag-title-slide">
+                <div class="rag-title-container">
+                    <h1 class="section-header">Retrieval-Augmented Generation</h1>
+                </div>
             </section>
 
             <!-- Why RAG -->
