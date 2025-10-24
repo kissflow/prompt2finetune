@@ -1,14 +1,14 @@
 # prompt2finetune
 Practical AI: From Prompting to Fine-Tuning
 
-### Prerequirstics
+### Prerequisites
 - Setup the colab
 
-  - Logon to <a href="https://colab.research.google.com/" target="_blank">https://colab.research.google.com/</a>
+  - Sign up to <a href="https://colab.research.google.com/" target="_blank">https://colab.research.google.com/</a>
 
 - Setup openrouter (to play with AI)
 
-  - Logon to <a href="https://openrouter.ai/" target="_blank">https://openrouter.ai/</a>
+  - Sign up to <a href="https://openrouter.ai/" target="_blank">https://openrouter.ai/</a>
   
   - click on the profile icon and click on the `key` menu
   ![alt text](images//openrouterkey.png)

@@ -693,6 +693,67 @@
             animation: floatIcon 3s ease-in-out infinite;
         }
 
+        /* Fine-Tuning Title Slide Styling */
+        .finetuning-title-slide {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .finetuning-title-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 25% 25%, rgba(30, 64, 175, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(30, 64, 175, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .finetuning-title-container {
+            position: relative;
+            z-index: 2;
+            padding: 3em 2em;
+            text-align: center;
+        }
+
+        .finetuning-title-container .section-header {
+            font-size: 2.2em;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin: 0;
+            position: relative;
+            animation: titleSlideIn 1s ease-out;
+        }
+
+        .finetuning-title-container::after {
+            content: '';
+            position: absolute;
+            bottom: 1em;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+            border-radius: 2px;
+            animation: dividerGrow 1.5s ease-out 0.5s both;
+        }
+
+        /* Decorative elements for Fine-Tuning */
+        .finetuning-title-container::before {
+            content: '⚙️';
+            position: absolute;
+            top: -0.5em;
+            right: 10%;
+            font-size: 2em;
+            opacity: 0.1;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
         /* Trade-offs Table Styling */
         .tradeoffs-container {
             display: grid;
@@ -1512,11 +1573,13 @@ Recommendation: [Yes/No with reason]</code></pre>
             </section>
 
             <!-- Section 3: Fine-Tuning -->
-            <section class="center-content">
-                <h1 class="section-header">Fine-Tuning</h1>
-                <p style="font-size: 0.8em; color: var(--text-secondary); margin-top: 0.3em;">
-                    Adapting Pre-trained Models to Your Specific Needs
-                </p>
+            <section class="center-content finetuning-title-slide">
+                <div class="finetuning-title-container">
+                    <h1 class="section-header">Fine-Tuning</h1>
+                    <p style="font-size: 0.8em; color: var(--text-secondary); margin-top: 0.3em;">
+                        Adapting Pre-trained Models to Your Specific Needs
+                    </p>
+                </div>
             </section>
 
             <!-- RAG vs Fine-Tuning Comparison -->
@@ -1557,41 +1620,203 @@ Recommendation: [Yes/No with reason]</code></pre>
                 </div>
             </section>
 
-            <!-- Why Fine-Tuning -->
+            <!-- Deep Learning Neural Network Illustration -->
             <section>
-                <h2 style="font-size: 1.1em;">Why Fine-Tuning?</h2>
-                <div class="two-column">
-                    <div>
-                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.3em; border-left: 3px solid #3b82f6; background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.1));">
-                            <h4 style="font-size: 0.65em; color: #3b82f6;">🎯 Task Specialization</h4>
-                            <p style="font-size: 0.5em; line-height: 1.3;">Optimize model performance for specific domains or tasks beyond what prompting can achieve</p>
-                        </div>
-                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.3em; border-left: 3px solid #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1));">
-                            <h4 style="font-size: 0.65em; color: #10b981;">📊 Consistent Output</h4>
-                            <p style="font-size: 0.5em; line-height: 1.3;">Train the model to follow specific formats, styles, or guidelines reliably</p>
-                        </div>
-                        <div class="benefit-item slide-fade-in" style="border-left: 3px solid #8b5cf6; background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(139, 92, 246, 0.1));">
-                            <h4 style="font-size: 0.65em; color: #8b5cf6;">🧠 Knowledge Integration</h4>
-                            <p style="font-size: 0.5em; line-height: 1.3;">Embed domain-specific knowledge directly into the model's parameters</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.3em; border-left: 3px solid #f59e0b; background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(245, 158, 11, 0.1));">
-                            <h4 style="font-size: 0.65em; color: #f59e0b;">💰 Cost Reduction</h4>
-                            <p style="font-size: 0.5em; line-height: 1.3;">Reduce inference costs with shorter prompts and faster responses</p>
-                        </div>
-                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.3em; border-left: 3px solid #ef4444; background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(239, 68, 68, 0.1));">
-                            <h4 style="font-size: 0.65em; color: #ef4444;">🔒 Privacy & Control</h4>
-                            <p style="font-size: 0.5em; line-height: 1.3;">Keep sensitive data within your infrastructure without sending to external APIs</p>
-                        </div>
-                        <div class="benefit-item slide-fade-in" style="border-left: 3px solid #06b6d4; background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(6, 182, 212, 0.1));">
-                            <h4 style="font-size: 0.65em; color: #06b6d4;">⚡ Better Performance</h4>
-                            <p style="font-size: 0.5em; line-height: 1.3;">Achieve superior results on specialized tasks compared to few-shot prompting</p>
-                        </div>
-                    </div>
+                <h2>Understanding Deep Learning: Neural Networks</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 0.4em; font-size: 0.7em;">
+                    How neural networks learn through layers, weights, and biases
+                </p>
+                <div class="diagram-container">
+                    <svg width="100%" height="500" viewBox="0 0 1000 500">
+                        <!-- Arrow marker definition -->
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#fbbf24"/>
+                            </marker>
+                        </defs>
+
+                        <!-- Input Layer -->
+                        <g id="input-layer">
+                            <text x="80" y="30" text-anchor="middle" fill="#3b82f6" font-size="16" font-weight="700">Input Layer</text>
+
+                            <!-- Input neurons -->
+                            <circle cx="80" cy="120" r="20" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+                            <text x="80" y="126" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">x₁</text>
+
+                            <circle cx="80" cy="200" r="20" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+                            <text x="80" y="206" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">x₂</text>
+
+                            <circle cx="80" cy="280" r="20" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+                            <text x="80" y="286" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">x₃</text>
+
+                            <circle cx="80" cy="360" r="20" fill="#3b82f6" stroke="#1e40af" stroke-width="2"/>
+                            <text x="80" y="366" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">x₄</text>
+                        </g>
+
+                        <!-- Hidden Layer 1 -->
+                        <g id="hidden-layer-1">
+                            <text x="300" y="30" text-anchor="middle" fill="#8b5cf6" font-size="16" font-weight="700">Hidden Layer 1</text>
+
+                            <!-- Hidden neurons -->
+                            <circle cx="300" cy="100" r="20" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                            <text x="300" y="106" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">h₁</text>
+
+                            <circle cx="300" cy="180" r="20" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                            <text x="300" y="186" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">h₂</text>
+
+                            <circle cx="300" cy="260" r="20" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                            <text x="300" y="266" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">h₃</text>
+
+                            <circle cx="300" cy="340" r="20" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                            <text x="300" y="346" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">h₄</text>
+
+                            <circle cx="300" cy="420" r="20" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                            <text x="300" y="426" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">h₅</text>
+                        </g>
+
+                        <!-- Hidden Layer 2 -->
+                        <g id="hidden-layer-2">
+                            <text x="520" y="30" text-anchor="middle" fill="#8b5cf6" font-size="16" font-weight="700">Hidden Layer 2</text>
+
+                            <!-- Hidden neurons -->
+                            <circle cx="520" cy="140" r="20" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                            <text x="520" y="146" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">h₆</text>
+
+                            <circle cx="520" cy="220" r="20" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                            <text x="520" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">h₇</text>
+
+                            <circle cx="520" cy="300" r="20" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                            <text x="520" y="306" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">h₈</text>
+
+                            <circle cx="520" cy="380" r="20" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                            <text x="520" y="386" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">h₉</text>
+                        </g>
+
+                        <!-- Output Layer -->
+                        <g id="output-layer">
+                            <text x="740" y="30" text-anchor="middle" fill="#22c55e" font-size="16" font-weight="700">Output Layer</text>
+
+                            <!-- Output neurons -->
+                            <circle cx="740" cy="200" r="20" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+                            <text x="740" y="206" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">y₁</text>
+
+                            <circle cx="740" cy="280" r="20" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+                            <text x="740" y="286" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">y₂</text>
+                        </g>
+
+                        <!-- Weights (connections) - Input to Hidden Layer 1 -->
+                        <g id="weights-input-hidden1" opacity="0.3">
+                            <!-- Just show a few sample connections -->
+                            <line x1="100" y1="120" x2="280" y2="100" stroke="#fbbf24" stroke-width="2"/>
+                            <line x1="100" y1="120" x2="280" y2="180" stroke="#fbbf24" stroke-width="1.5"/>
+                            <line x1="100" y1="200" x2="280" y2="260" stroke="#fbbf24" stroke-width="2.5"/>
+                            <line x1="100" y1="280" x2="280" y2="340" stroke="#fbbf24" stroke-width="1.5"/>
+                            <line x1="100" y1="360" x2="280" y2="420" stroke="#fbbf24" stroke-width="2"/>
+
+                            <!-- More connections -->
+                            <line x1="100" y1="200" x2="280" y2="100" stroke="#fbbf24" stroke-width="1"/>
+                            <line x1="100" y1="280" x2="280" y2="180" stroke="#fbbf24" stroke-width="1"/>
+                            <line x1="100" y1="360" x2="280" y2="260" stroke="#fbbf24" stroke-width="1"/>
+                        </g>
+
+                        <!-- Weight Labels -->
+                        <g id="weight-labels" opacity="0.9">
+                            <!-- Label on first connection -->
+                            <text x="170" y="105" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="600">w₁₁</text>
+
+                            <!-- Label on third connection -->
+                            <text x="170" y="225" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="600">w₂₃</text>
+                        </g>
+
+                        <!-- Weights - Hidden Layer 1 to Hidden Layer 2 -->
+                        <g id="weights-hidden1-hidden2" opacity="0.3">
+                            <line x1="320" y1="100" x2="500" y2="140" stroke="#fbbf24" stroke-width="2"/>
+                            <line x1="320" y1="180" x2="500" y2="220" stroke="#fbbf24" stroke-width="2.5"/>
+                            <line x1="320" y1="260" x2="500" y2="300" stroke="#fbbf24" stroke-width="1.5"/>
+                            <line x1="320" y1="340" x2="500" y2="380" stroke="#fbbf24" stroke-width="2"/>
+
+                            <line x1="320" y1="180" x2="500" y2="140" stroke="#fbbf24" stroke-width="1"/>
+                            <line x1="320" y1="260" x2="500" y2="220" stroke="#fbbf24" stroke-width="1"/>
+                            <line x1="320" y1="340" x2="500" y2="300" stroke="#fbbf24" stroke-width="1"/>
+                        </g>
+
+                        <!-- Weight Labels Layer 2 -->
+                        <g id="weight-labels-2" opacity="0.9">
+                            <text x="400" y="195" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="600">w₂₇</text>
+                        </g>
+
+                        <!-- Weights - Hidden Layer 2 to Output -->
+                        <g id="weights-hidden2-output" opacity="0.3">
+                            <line x1="540" y1="140" x2="720" y2="200" stroke="#fbbf24" stroke-width="2"/>
+                            <line x1="540" y1="220" x2="720" y2="200" stroke="#fbbf24" stroke-width="1.5"/>
+                            <line x1="540" y1="300" x2="720" y2="280" stroke="#fbbf24" stroke-width="2.5"/>
+                            <line x1="540" y1="380" x2="720" y2="280" stroke="#fbbf24" stroke-width="1.5"/>
+                        </g>
+
+                        <!-- Weight Labels Layer 3 -->
+                        <g id="weight-labels-3" opacity="0.9">
+                            <text x="620" y="285" text-anchor="middle" fill="#f59e0b" font-size="10" font-weight="600">w₈₂</text>
+                        </g>
+
+                        <!-- Bias nodes -->
+                        <g id="bias-nodes">
+                            <!-- Bias for Hidden Layer 1 -->
+                            <circle cx="300" cy="470" r="15" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+                            <text x="300" y="476" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">b₁</text>
+                            <line x1="300" y1="455" x2="300" y2="440" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3"/>
+
+                            <!-- Bias for Hidden Layer 2 -->
+                            <circle cx="520" cy="470" r="15" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+                            <text x="520" y="476" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">b₂</text>
+                            <line x1="520" y1="455" x2="520" y2="400" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3"/>
+
+                            <!-- Bias for Output Layer -->
+                            <circle cx="740" cy="350" r="15" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+                            <text x="740" y="356" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="600">b₃</text>
+                            <line x1="740" y1="335" x2="740" y2="300" stroke="#f59e0b" stroke-width="2" stroke-dasharray="3,3"/>
+                        </g>
+
+                        <!-- Labels and annotations -->
+                        <g id="annotations">
+                            <!-- Weight annotation -->
+                            <rect x="840" y="100" width="140" height="100" rx="8" fill="rgba(251, 191, 36, 0.1)" stroke="#fbbf24" stroke-width="2"/>
+                            <text x="910" y="125" text-anchor="middle" fill="#fbbf24" font-size="13" font-weight="700">Weights (W)</text>
+                            <text x="910" y="145" text-anchor="middle" fill="#475569" font-size="11">(Lines shown below)</text>
+                            <text x="910" y="162" text-anchor="middle" fill="#475569" font-size="11">Connection</text>
+                            <text x="910" y="179" text-anchor="middle" fill="#475569" font-size="11">strengths between</text>
+                            <text x="910" y="195" text-anchor="middle" fill="#475569" font-size="11">neurons</text>
+
+                            <!-- Arrow pointing to a weight line -->
+                            <path d="M 840 160 L 650 280" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4,4" fill="none" marker-end="url(#arrowhead)"/>
+
+                            <!-- Bias annotation -->
+                            <rect x="840" y="220" width="140" height="90" rx="8" fill="rgba(245, 158, 11, 0.1)" stroke="#f59e0b" stroke-width="2"/>
+                            <text x="910" y="245" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="700">Biases (b)</text>
+                            <text x="910" y="265" text-anchor="middle" fill="#475569" font-size="11">Offset values to</text>
+                            <text x="910" y="282" text-anchor="middle" fill="#475569" font-size="11">shift activation</text>
+                            <text x="910" y="299" text-anchor="middle" fill="#475569" font-size="11">functions</text>
+
+                            <!-- Activation annotation -->
+                            <rect x="840" y="330" width="140" height="90" rx="8" fill="rgba(139, 92, 246, 0.1)" stroke="#8b5cf6" stroke-width="2"/>
+                            <text x="910" y="355" text-anchor="middle" fill="#8b5cf6" font-size="13" font-weight="700">Activation</text>
+                            <text x="910" y="375" text-anchor="middle" fill="#475569" font-size="11">Non-linear</text>
+                            <text x="910" y="392" text-anchor="middle" fill="#475569" font-size="11">transformation</text>
+                            <text x="910" y="409" text-anchor="middle" fill="#475569" font-size="11">(ReLU, Sigmoid, etc.)</text>
+                        </g>
+
+                        <!-- Formula at bottom -->
+                        <g id="formula">
+                            <rect x="225" y="455" width="550" height="35" rx="6" fill="rgba(30, 64, 175, 0.1)" stroke="#3b82f6" stroke-width="2"/>
+                            <text x="500" y="478" text-anchor="middle" fill="#1e40af" font-size="15" font-weight="600">
+                                Output = Activation(Weights × Input + Bias)
+                            </text>
+                        </g>
+                    </svg>
                 </div>
                 <div class="highlight-box" style="margin-top: 0.3em;">
-                    <p style="text-align: center; font-size: 0.6em; line-height: 1.3;"><strong>When Prompting Isn't Enough:</strong> Complex domain knowledge • Strict format requirements • High-volume production use • Proprietary behavior patterns</p>
+                    <p style="text-align: center; font-size: 0.65em; line-height: 1.3;">
+                        <strong>Fine-Tuning modifies these weights and biases</strong> to specialize the network for your specific task while keeping the overall architecture intact
+                    </p>
                 </div>
             </section>
 
@@ -1648,6 +1873,171 @@ Recommendation: [Yes/No with reason]</code></pre>
                         <span class="guide-item" style="font-size: 0.4em;">Balanced → LoRA</span>
                         <span class="guide-item" style="font-size: 0.4em;">Limited resources → QLoRA</span>
                     </div>
+                </div>
+            </section>
+
+            <!-- Fine-Tuning Methods Comparison with Formulas -->
+            <section>
+                <h2>Fine-Tuning Methods: Visual Comparison</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 0.5em; font-size: 0.7em;">
+                    Understanding how each method modifies the model weights
+                </p>
+
+                <div class="diagram-container" style="margin-bottom: 0.5em;">
+                    <svg width="100%" height="380" viewBox="0 0 1000 380">
+                        <!-- Full Fine-Tuning -->
+                        <g id="full-finetuning">
+                            <text x="170" y="25" text-anchor="middle" fill="#3b82f6" font-size="16" font-weight="700">Full Fine-Tuning</text>
+
+                            <!-- Original Weight Matrix -->
+                            <rect x="80" y="45" width="80" height="80" rx="4" fill="#1e3a8a" stroke="#3b82f6" stroke-width="2"/>
+                            <text x="120" y="75" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="600">W</text>
+                            <text x="120" y="92" text-anchor="middle" fill="#cbd5e1" font-size="10">Original</text>
+                            <text x="120" y="105" text-anchor="middle" fill="#cbd5e1" font-size="10">Weights</text>
+                            <text x="120" y="118" text-anchor="middle" fill="#fbbf24" font-size="9">d × k</text>
+
+                            <!-- Arrow -->
+                            <path d="M 165 85 L 210 85" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowhead-green)"/>
+                            <text x="187" y="75" text-anchor="middle" fill="#22c55e" font-size="10" font-weight="600">Train All</text>
+
+                            <!-- Updated Weight Matrix -->
+                            <rect x="215" y="45" width="80" height="80" rx="4" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+                            <text x="255" y="75" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="600">W'</text>
+                            <text x="255" y="92" text-anchor="middle" fill="#0f172a" font-size="10">Updated</text>
+                            <text x="255" y="105" text-anchor="middle" fill="#0f172a" font-size="10">Weights</text>
+                            <text x="255" y="118" text-anchor="middle" fill="#0f172a" font-size="9">d × k</text>
+
+                            <!-- Formula -->
+                            <rect x="50" y="140" width="280" height="30" rx="4" fill="rgba(59, 130, 246, 0.1)" stroke="#3b82f6" stroke-width="2"/>
+                            <text x="190" y="160" text-anchor="middle" fill="#1e40af" font-size="12" font-weight="600">
+                                h = W' · x
+                            </text>
+
+                            <!-- Stats -->
+                            <rect x="50" y="180" width="280" height="60" rx="4" fill="rgba(239, 68, 68, 0.05)" stroke="#ef4444" stroke-width="1"/>
+                            <text x="190" y="200" text-anchor="middle" fill="#ef4444" font-size="11" font-weight="600">Memory: Very High</text>
+                            <text x="190" y="215" text-anchor="middle" fill="#475569" font-size="10">Trainable: 100%</text>
+                            <text x="190" y="230" text-anchor="middle" fill="#475569" font-size="10">Storage: d × k parameters</text>
+                        </g>
+
+                        <!-- LoRA -->
+                        <g id="lora">
+                            <text x="515" y="25" text-anchor="middle" fill="#10b981" font-size="18" font-weight="700">LoRA</text>
+
+                            <!-- Original Weight Matrix (Frozen) -->
+                            <rect x="400" y="40" width="90" height="90" rx="4" fill="#64748b" stroke="#475569" stroke-width="3"/>
+                            <text x="445" y="75" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="700">W</text>
+                            <text x="445" y="95" text-anchor="middle" fill="#cbd5e1" font-size="11">Frozen</text>
+                            <text x="445" y="112" text-anchor="middle" fill="#cbd5e1" font-size="10">d × k</text>
+
+                            <!-- Plus sign -->
+                            <text x="505" y="90" text-anchor="middle" fill="#10b981" font-size="26" font-weight="700">+</text>
+
+                            <!-- LoRA Matrices -->
+                            <g>
+                                <!-- Matrix B -->
+                                <rect x="530" y="40" width="40" height="90" rx="3" fill="#10b981" stroke="#047857" stroke-width="3"/>
+                                <text x="550" y="78" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">B</text>
+                                <text x="550" y="98" text-anchor="middle" fill="#ffffff" font-size="10">d×r</text>
+
+                                <!-- Multiplication sign -->
+                                <text x="585" y="90" text-anchor="middle" fill="#10b981" font-size="20" font-weight="700">×</text>
+
+                                <!-- Matrix A -->
+                                <rect x="605" y="70" width="65" height="40" rx="3" fill="#10b981" stroke="#047857" stroke-width="3"/>
+                                <text x="637" y="93" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">A</text>
+                                <text x="637" y="105" text-anchor="middle" fill="#ffffff" font-size="10">r×k</text>
+                            </g>
+
+                            <!-- Rank annotation -->
+                            <text x="605" y="125" text-anchor="middle" fill="#f59e0b" font-size="11" font-weight="700">r ≪ min(d,k)</text>
+
+                            <!-- Formula -->
+                            <rect x="385" y="140" width="280" height="30" rx="4" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="2"/>
+                            <text x="525" y="160" text-anchor="middle" fill="#047857" font-size="13" font-weight="700">
+                                h = (W + B·A) · x
+                            </text>
+
+                            <!-- Stats -->
+                            <rect x="385" y="180" width="280" height="60" rx="4" fill="rgba(34, 197, 94, 0.05)" stroke="#22c55e" stroke-width="1"/>
+                            <text x="525" y="200" text-anchor="middle" fill="#22c55e" font-size="12" font-weight="700">Memory: Low</text>
+                            <text x="525" y="216" text-anchor="middle" fill="#475569" font-size="10">Trainable: 0.1-1%</text>
+                            <text x="525" y="231" text-anchor="middle" fill="#475569" font-size="10">Storage: (d+k)×r parameters</text>
+                        </g>
+
+                        <!-- QLoRA -->
+                        <g id="qlora">
+                            <text x="835" y="25" text-anchor="middle" fill="#8b5cf6" font-size="16" font-weight="700">QLoRA</text>
+
+                            <!-- Quantized Weight Matrix (Frozen) -->
+                            <rect x="750" y="45" width="70" height="70" rx="4" fill="#64748b" stroke="#475569" stroke-width="2"/>
+                            <text x="785" y="70" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="600">W</text>
+                            <text x="785" y="83" text-anchor="middle" fill="#fbbf24" font-size="8" font-weight="600">4-bit</text>
+                            <text x="785" y="95" text-anchor="middle" fill="#cbd5e1" font-size="9">Frozen</text>
+                            <text x="785" y="107" text-anchor="middle" fill="#cbd5e1" font-size="8">d × k</text>
+
+                            <!-- Plus sign -->
+                            <text x="833" y="85" text-anchor="middle" fill="#8b5cf6" font-size="20" font-weight="700">+</text>
+
+                            <!-- LoRA Matrices (smaller) -->
+                            <g>
+                                <!-- Matrix B -->
+                                <rect x="855" y="55" width="25" height="55" rx="3" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                                <text x="867" y="78" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600">B</text>
+                                <text x="867" y="90" text-anchor="middle" fill="#ffffff" font-size="7">d×r</text>
+
+                                <!-- Multiplication sign -->
+                                <text x="890" y="85" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="700">×</text>
+
+                                <!-- Matrix A -->
+                                <rect x="900" y="73" width="40" height="25" rx="3" fill="#8b5cf6" stroke="#6d28d9" stroke-width="2"/>
+                                <text x="920" y="88" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600">A</text>
+                                <text x="920" y="96" text-anchor="middle" fill="#ffffff" font-size="7">r×k</text>
+                            </g>
+
+                            <!-- Formula -->
+                            <rect x="710" y="140" width="280" height="30" rx="4" fill="rgba(139, 92, 246, 0.1)" stroke="#8b5cf6" stroke-width="2"/>
+                            <text x="850" y="160" text-anchor="middle" fill="#6d28d9" font-size="12" font-weight="600">
+                                h = (W₄ₑᵢₜ + B·A) · x
+                            </text>
+
+                            <!-- Stats -->
+                            <rect x="710" y="180" width="280" height="60" rx="4" fill="rgba(139, 92, 246, 0.05)" stroke="#8b5cf6" stroke-width="1"/>
+                            <text x="850" y="200" text-anchor="middle" fill="#8b5cf6" font-size="11" font-weight="600">Memory: Minimal (75% ↓)</text>
+                            <text x="850" y="215" text-anchor="middle" fill="#475569" font-size="10">Trainable: 0.1-1%</text>
+                            <text x="850" y="230" text-anchor="middle" fill="#475569" font-size="10">Storage: d×k/4 + (d+k)×r</text>
+                        </g>
+
+                        <!-- Legend at bottom -->
+                        <g id="legend">
+                            <rect x="150" y="260" width="700" height="110" rx="8" fill="rgba(30, 64, 175, 0.03)" stroke="#cbd5e1" stroke-width="2"/>
+
+                            <text x="500" y="280" text-anchor="middle" fill="#1e40af" font-size="13" font-weight="700">Key Concepts</text>
+
+                            <!-- Row 1 -->
+                            <text x="180" y="300" text-anchor="start" fill="#475569" font-size="10" font-weight="600">• d: Input dimension</text>
+                            <text x="380" y="300" text-anchor="start" fill="#475569" font-size="10" font-weight="600">• k: Output dimension</text>
+                            <text x="580" y="300" text-anchor="start" fill="#475569" font-size="10" font-weight="600">• r: Rank (r ≪ d, k)</text>
+
+                            <!-- Row 2 -->
+                            <text x="180" y="320" text-anchor="start" fill="#475569" font-size="10" font-weight="600">• W: Pre-trained weights (frozen in LoRA/QLoRA)</text>
+                            <text x="580" y="320" text-anchor="start" fill="#475569" font-size="10" font-weight="600">• B, A: Trainable adapter matrices</text>
+
+                            <!-- Row 3 -->
+                            <text x="180" y="340" text-anchor="start" fill="#475569" font-size="10" font-weight="600">• Full FT: Updates all d×k parameters</text>
+                            <text x="580" y="340" text-anchor="start" fill="#475569" font-size="10" font-weight="600">• LoRA/QLoRA: Only (d+k)×r parameters</text>
+
+                            <!-- Row 4 -->
+                            <text x="180" y="360" text-anchor="start" fill="#f59e0b" font-size="10" font-weight="600">Example: r=8, d=4096, k=4096 → 99.8% fewer trainable params!</text>
+                        </g>
+
+                        <!-- Arrow marker definitions -->
+                        <defs>
+                            <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0, 10 3, 0 6" fill="#22c55e"/>
+                            </marker>
+                        </defs>
+                    </svg>
                 </div>
             </section>
 
@@ -1757,11 +2147,47 @@ Recommendation: [Yes/No with reason]</code></pre>
                 </div>
                 <div class="highlight-box" style="margin-top: 0.8em;">
                     <h3 style="color: var(--accent-gold); text-align: center; margin-bottom: 0.3em; font-size: 0.95em;">Ready to Build?</h3>
-                    <p style="text-align: center; font-size: 0.8em; color: var(--text-light); margin: 0.3em 0;">
+                    <p style="text-align: center; font-size: 0.8em; color: var(--text-dark); margin: 0.3em 0;">
                         <strong>github.com/kissflow/prompt2finetune</strong>
                     </p>
                     <p style="text-align: center; color: var(--text-secondary); margin-top: 0.3em; font-size: 0.7em;">
                         All notebooks, examples, and resources are ready for you to explore
+                    </p>
+                </div>
+            </section>
+
+            <!-- Contact Us Slide -->
+            <section class="center-content" style="justify-content: center; align-items: center;">
+                <div style="text-align: center;">
+                    <h1 style="font-size: 1.8em; color: var(--primary-dark); margin-bottom: 0.5em;">Get in Touch</h1>
+                    <p style="font-size: 0.8em; color: var(--text-secondary); margin-bottom: 2em;">
+                        Have questions? Let's connect!
+                    </p>
+
+                    <!-- Contacts -->
+                    <div style="display: flex; gap: 4em; justify-content: center; align-items: flex-start;">
+
+                        <!-- Person 1 -->
+                        <div style="text-align: center;">
+                            <h2 style="font-size: 1.1em; color: var(--primary-dark); margin: 0 0 0.2em 0;">Saravanan R</h2>
+                            <a href="https://linkedin.com/in/alexsmith" target="_blank" style="font-size: 0.7em; color: #0077b5; text-decoration: none;">
+                                linkedin.com/in/saravananramupillai
+                            </a>
+                        </div>
+
+                        <!-- Person 2 -->
+                        <div style="text-align: center;">
+                            <h2 style="font-size: 1.1em; color: var(--primary-dark); margin: 0 0 0.2em 0;">Jim Isaac</h2>
+                            <a href="https://linkedin.com/in/jordandavis" target="_blank" style="font-size: 0.7em; color: #0077b5; text-decoration: none;">
+                                linkedin.com/in/jimisaacd
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <!-- Bottom text -->
+                    <p style="font-size: 0.75em; color: var(--text-secondary); margin-top: 2em;">
+                        We'd love to hear from you and discuss AI solutions!
                     </p>
                 </div>
             </section>
