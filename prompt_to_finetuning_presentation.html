@@ -1417,41 +1417,135 @@ Recommendation: [Yes/No with reason]</code></pre>
                 </p>
             </section>
 
+            <!-- RAG vs Fine-Tuning Comparison -->
+            <section>
+                <h2>RAG vs Fine-Tuning: Choosing the Right Approach</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 0.4em; font-size: 0.7em;">
+                    Understanding when to use each approach for optimal results
+                </p>
+                <div class="benefits-list">
+                    <div class="benefit-item slide-fade-in" style="border-left: 3px solid #3b82f6; background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.1));">
+                        <h4 style="font-size: 0.7em; color: #3b82f6;">🔍 RAG Characteristics</h4>
+                        <p style="font-size: 0.5em; line-height: 1.4;"><strong>Cost:</strong> Low setup & operational costs<br>
+                        <strong>Speed:</strong> Fast implementation & inference<br>
+                        <strong>Accuracy:</strong> Medium quality, depends on retrieval<br>
+                        <strong>Updates:</strong> Very easy - just update knowledge base<br>
+                        <strong>Complexity:</strong> Low technical difficulty<br>
+                        <strong>Best for:</strong> Dynamic knowledge, real-time data, budget-conscious projects</p>
+                    </div>
+                    <div class="benefit-item slide-fade-in" style="border-left: 3px solid #f59e0b; background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(245, 158, 11, 0.1));">
+                        <h4 style="font-size: 0.7em; color: #f59e0b;">⚙️ Fine-Tuning Characteristics</h4>
+                        <p style="font-size: 0.5em; line-height: 1.4;"><strong>Cost:</strong> High setup & training costs<br>
+                        <strong>Speed:</strong> Slow implementation, fast inference<br>
+                        <strong>Accuracy:</strong> Very high quality, specialized performance<br>
+                        <strong>Updates:</strong> Hard - requires retraining<br>
+                        <strong>Complexity:</strong> High technical difficulty<br>
+                        <strong>Best for:</strong> Specialized tasks, consistent output, maximum quality needs</p>
+                    </div>
+                </div>
+                
+                <div class="quick-guide" style="margin-top: 0.5em;">
+                    <h3>Quick Decision Guide</h3>
+                    <div class="guide-items">
+                        <span class="guide-item">Need latest info → RAG</span>
+                        <span class="guide-item">Specialized domain → Fine-Tuning</span>
+                        <span class="guide-item">Budget conscious → RAG</span>
+                        <span class="guide-item">Maximum quality → Fine-Tuning</span>
+                    </div>
+                </div>
+            </section>
+
             <!-- Why Fine-Tuning -->
             <section>
-                <h2>Why Fine-Tuning?</h2>
+                <h2 style="font-size: 1.1em;">Why Fine-Tuning?</h2>
                 <div class="two-column">
                     <div>
-                        <div class="benefit-item slide-fade-in">
-                            <h4>🎯 Task Specialization</h4>
-                            <p>Optimize model performance for specific domains or tasks beyond what prompting can achieve</p>
+                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.3em; border-left: 3px solid #3b82f6; background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.1));">
+                            <h4 style="font-size: 0.65em; color: #3b82f6;">🎯 Task Specialization</h4>
+                            <p style="font-size: 0.5em; line-height: 1.3;">Optimize model performance for specific domains or tasks beyond what prompting can achieve</p>
                         </div>
-                        <div class="benefit-item slide-fade-in">
-                            <h4>📊 Consistent Output</h4>
-                            <p>Train the model to follow specific formats, styles, or guidelines reliably</p>
+                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.3em; border-left: 3px solid #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1));">
+                            <h4 style="font-size: 0.65em; color: #10b981;">📊 Consistent Output</h4>
+                            <p style="font-size: 0.5em; line-height: 1.3;">Train the model to follow specific formats, styles, or guidelines reliably</p>
                         </div>
-                        <div class="benefit-item slide-fade-in">
-                            <h4>🧠 Knowledge Integration</h4>
-                            <p>Embed domain-specific knowledge directly into the model's parameters</p>
+                        <div class="benefit-item slide-fade-in" style="border-left: 3px solid #8b5cf6; background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(139, 92, 246, 0.1));">
+                            <h4 style="font-size: 0.65em; color: #8b5cf6;">🧠 Knowledge Integration</h4>
+                            <p style="font-size: 0.5em; line-height: 1.3;">Embed domain-specific knowledge directly into the model's parameters</p>
                         </div>
                     </div>
                     <div>
-                        <div class="benefit-item slide-fade-in">
-                            <h4>💰 Cost Reduction</h4>
-                            <p>Reduce inference costs with shorter prompts and faster responses</p>
+                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.3em; border-left: 3px solid #f59e0b; background: linear-gradient(135deg, rgba(245, 158, 11, 0.05), rgba(245, 158, 11, 0.1));">
+                            <h4 style="font-size: 0.65em; color: #f59e0b;">💰 Cost Reduction</h4>
+                            <p style="font-size: 0.5em; line-height: 1.3;">Reduce inference costs with shorter prompts and faster responses</p>
                         </div>
-                        <div class="benefit-item slide-fade-in">
-                            <h4>🔒 Privacy & Control</h4>
-                            <p>Keep sensitive data within your infrastructure without sending to external APIs</p>
+                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.3em; border-left: 3px solid #ef4444; background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(239, 68, 68, 0.1));">
+                            <h4 style="font-size: 0.65em; color: #ef4444;">🔒 Privacy & Control</h4>
+                            <p style="font-size: 0.5em; line-height: 1.3;">Keep sensitive data within your infrastructure without sending to external APIs</p>
                         </div>
-                        <div class="benefit-item slide-fade-in">
-                            <h4>⚡ Better Performance</h4>
-                            <p>Achieve superior results on specialized tasks compared to few-shot prompting</p>
+                        <div class="benefit-item slide-fade-in" style="border-left: 3px solid #06b6d4; background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(6, 182, 212, 0.1));">
+                            <h4 style="font-size: 0.65em; color: #06b6d4;">⚡ Better Performance</h4>
+                            <p style="font-size: 0.5em; line-height: 1.3;">Achieve superior results on specialized tasks compared to few-shot prompting</p>
                         </div>
                     </div>
                 </div>
-                <div class="highlight-box" style="margin-top: 0.4em;">
-                    <p style="text-align: center; font-size: 0.7em;"><strong>When Prompting Isn't Enough:</strong> Complex domain knowledge • Strict format requirements • High-volume production use • Proprietary behavior patterns</p>
+                <div class="highlight-box" style="margin-top: 0.3em;">
+                    <p style="text-align: center; font-size: 0.6em; line-height: 1.3;"><strong>When Prompting Isn't Enough:</strong> Complex domain knowledge • Strict format requirements • High-volume production use • Proprietary behavior patterns</p>
+                </div>
+            </section>
+
+            <!-- Fine-Tuning Methods -->
+            <section>
+                <h2 style="font-size: 1em;">Fine-Tuning Methods</h2>
+                <p style="color: var(--text-secondary); margin-bottom: 0.3em; font-size: 0.55em;">
+                    Different approaches to adapt pre-trained models
+                </p>
+                
+                <div class="two-column">
+                    <!-- Left Column: Full Fine-Tuning -->
+                    <div>
+                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.2em; border-left: 3px solid #3b82f6; background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), rgba(59, 130, 246, 0.1));">
+                            <h4 style="font-size: 0.6em; color: #3b82f6;">1. 🔧 Full Fine-Tuning</h4>
+                            <p style="font-size: 0.45em; line-height: 1.2;"><strong>Method:</strong> Update all parameters<br>
+                            <strong>Resources:</strong> High memory, long training<br>
+                            <strong>Quality:</strong> Best performance<br>
+                            <strong>Use Case:</strong> Large datasets, max performance</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: PEFT -->
+                    <div>
+                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.2em; border-left: 3px solid #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1));">
+                            <h4 style="font-size: 0.6em; color: #10b981;">2. 🎯 PEFT</h4>
+                            <p style="font-size: 0.45em; line-height: 1.2;"><strong>Concept:</strong> Train small subset of parameters<br>
+                            <strong>Resources:</strong> Low memory, fast training<br>
+                            <strong>Quality:</strong> Near full performance<br>
+                            <strong>Use Case:</strong> Resource-constrained</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PEFT Sub-methods with boundary -->
+                <div style="margin-top: 0.2em; border: 2px solid #10b981; border-radius: 8px; padding: 0.3em; background: linear-gradient(135deg, rgba(16, 185, 129, 0.02), rgba(16, 185, 129, 0.05));">
+                    <h4 style="font-size: 0.6em; color: #10b981; margin: 0 0 0.2em 0; text-align: center;">PEFT Sub-methods</h4>
+                    <div class="benefits-list">
+                        <div class="benefit-item slide-fade-in" style="margin-bottom: 0.2em; border-left: 3px solid #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1));">
+                            <h4 style="font-size: 0.55em; color: #10b981;">2.1 🎯 LoRA (Low-Rank Adaptation)</h4>
+                            <p style="font-size: 0.4em; line-height: 1.2;"><strong>Method:</strong> Small adapter matrices • <strong>Resources:</strong> Low memory • <strong>Quality:</strong> Near full performance</p>
+                        </div>
+                        <div class="benefit-item slide-fade-in" style="border-left: 3px solid #10b981; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(16, 185, 129, 0.1));">
+                            <h4 style="font-size: 0.55em; color: #10b981;">2.2 ⚡ QLoRA (Quantized LoRA)</h4>
+                            <p style="font-size: 0.4em; line-height: 1.2;"><strong>Method:</strong> 4-bit quantization + LoRA • <strong>Resources:</strong> Minimal memory • <strong>Quality:</strong> Excellent with 4-bit weights</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quick-guide" style="margin-top: 0.2em;">
+                    <h3 style="font-size: 0.6em;">Quick Selection</h3>
+                    <div class="guide-items">
+                        <span class="guide-item" style="font-size: 0.4em;">Max quality → Full Fine-Tuning</span>
+                        <span class="guide-item" style="font-size: 0.4em;">Balanced → LoRA</span>
+                        <span class="guide-item" style="font-size: 0.4em;">Limited resources → QLoRA</span>
+                    </div>
                 </div>
             </section>
 
@@ -1537,6 +1631,127 @@ Recommendation: [Yes/No with reason]</code></pre>
                 <div class="highlight-box">
                     <p style="text-align: center; font-size: 0.7em;"><strong>Perfect Balance:</strong> Train 70B models on consumer GPUs • Maintain base model quality • Rapid iteration • Easy deployment</p>
                 </div>
+            </section>
+
+            <!-- Let's Cook! Slide -->
+            <section class="center-content" style="background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #f1f5f9 100%); position: relative; overflow: hidden;">
+                <!-- Background decorative elements -->
+                <div style="position: absolute; top: 10%; right: 5%; width: 60px; height: 60px; background: linear-gradient(45deg, #f97316, #fbbf24); border-radius: 50%; opacity: 0.1; animation: float 3s ease-in-out infinite;"></div>
+                <div style="position: absolute; bottom: 15%; left: 8%; width: 40px; height: 40px; background: linear-gradient(45deg, #3b82f6, #8b5cf6); border-radius: 50%; opacity: 0.1; animation: float 3s ease-in-out infinite reverse;"></div>
+                
+                <div style="position: relative; z-index: 2; padding: 2em;">
+                    <!-- Main Title -->
+                    <h1 style="font-size: 2.5em; font-weight: 800; color: #1e293b; margin-bottom: 0.3em; text-align: center;">
+                        <span style="color: #f97316;">🍳</span> Let's Cook! <span style="color: #3b82f6;">⚙️</span>
+                    </h1>
+                    
+                    <!-- Subtitle -->
+                    <p style="font-size: 0.9em; color: #475569; margin-bottom: 1.5em; text-align: center; font-weight: 600;">
+                        Time to Fine-Tune Your AI Model!
+                    </p>
+                    
+                    <!-- Clean Cooking Process Diagram -->
+                    <div style="background: linear-gradient(135deg, #ffffff, #f8fafc); border-radius: 16px; padding: 1.5em; margin: 1em 0; border: 1px solid #e2e8f0; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);">
+                        <svg width="100%" height="300" viewBox="0 0 1000 300">
+                            <!-- Clean Background -->
+                            <rect x="0" y="0" width="1000" height="300" fill="transparent"/>
+                            
+                            <!-- Step 1: Ingredients -->
+                            <g>
+                                <circle cx="150" cy="150" r="40" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+                                <text x="150" y="145" text-anchor="middle" fill="#92400e" font-size="16" font-weight="700">📊</text>
+                                <text x="150" y="160" text-anchor="middle" fill="#92400e" font-size="12" font-weight="600">Data</text>
+                                <text x="150" y="200" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="700">1. Prepare</text>
+                            </g>
+                            
+                            <!-- Arrow 1 -->
+                            <path d="M 200 150 L 280 150" stroke="#f97316" stroke-width="4" fill="none" marker-end="url(#arrow1)"/>
+                            
+                            <!-- Step 2: Cooking Pot -->
+                            <g>
+                                <ellipse cx="400" cy="180" rx="50" ry="20" fill="#1e3a8a"/>
+                                <rect x="350" y="120" width="100" height="60" rx="8" fill="#1e3a8a"/>
+                                <text x="400" y="140" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">Base Model</text>
+                                <text x="400" y="155" text-anchor="middle" fill="#cbd5e1" font-size="10">(LLaMA, Mistral)</text>
+                                
+                                <!-- Steam effect -->
+                                <path d="M 380 120 Q 390 100 400 120 Q 410 100 420 120" stroke="#fbbf24" stroke-width="3" fill="none" opacity="0.7">
+                                    <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+                                </path>
+                                
+                                <text x="400" y="220" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="700">2. Mix & Train</text>
+                            </g>
+                            
+                            <!-- Arrow 2 -->
+                            <path d="M 500 150 L 580 150" stroke="#f97316" stroke-width="4" fill="none" marker-end="url(#arrow2)"/>
+                            
+                            <!-- Step 3: Final Product -->
+                            <g>
+                                <rect x="650" y="120" width="100" height="60" rx="12" fill="#22c55e" stroke="#16a34a" stroke-width="3"/>
+                                <text x="700" y="140" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">Fine-tuned</text>
+                                <text x="700" y="155" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="700">Model</text>
+                                <text x="700" y="200" text-anchor="middle" fill="#22c55e" font-size="14" font-weight="700">3. Serve</text>
+                            </g>
+                            
+                            <!-- Floating LoRA Elements -->
+                            <g>
+                                <circle cx="400" cy="80" r="15" fill="#8b5cf6" opacity="0.8">
+                                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-5; 0,0" dur="3s" repeatCount="indefinite"/>
+                                </circle>
+                                <text x="400" y="85" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="600">LoRA</text>
+                                
+                                <circle cx="450" cy="70" r="12" fill="#f59e0b" opacity="0.8">
+                                    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-3; 0,0" dur="2.5s" repeatCount="indefinite"/>
+                                </circle>
+                                <text x="450" y="74" text-anchor="middle" fill="#ffffff" font-size="8" font-weight="600">4-bit</text>
+                            </g>
+                            
+                            <!-- Arrow definitions -->
+                            <defs>
+                                <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                    <polygon points="0 0, 10 3, 0 6" fill="#f97316"/>
+                                </marker>
+                                <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                    <polygon points="0 0, 10 3, 0 6" fill="#f97316"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                        
+                        <!-- Process Description -->
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; margin-top: 1em;">
+                            <div style="text-align: center; padding: 0.5em; background: rgba(249, 115, 22, 0.1); border-radius: 8px;">
+                                <div style="font-size: 1.8em; margin-bottom: 0.3em;">🥘</div>
+                                <h4 style="font-size: 0.7em; color: #f97316; margin: 0; font-weight: 700;">Prepare Ingredients</h4>
+                                <p style="font-size: 0.5em; color: #92400e; margin: 0.2em 0 0 0; line-height: 1.3;">Gather training data<br>Clean and format<br>Prepare base model</p>
+                            </div>
+                            <div style="text-align: center; padding: 0.5em; background: rgba(30, 64, 175, 0.1); border-radius: 8px;">
+                                <div style="font-size: 1.8em; margin-bottom: 0.3em;">⚡</div>
+                                <h4 style="font-size: 0.7em; color: #1e3a8a; margin: 0; font-weight: 700;">Mix & Train</h4>
+                                <p style="font-size: 0.5em; color: #1e40af; margin: 0.2em 0 0 0; line-height: 1.3;">Apply LoRA adapters<br>Quantize to 4-bit<br>Start training</p>
+                            </div>
+                            <div style="text-align: center; padding: 0.5em; background: rgba(34, 197, 94, 0.1); border-radius: 8px;">
+                                <div style="font-size: 1.8em; margin-bottom: 0.3em;">🚀</div>
+                                <h4 style="font-size: 0.7em; color: #22c55e; margin: 0; font-weight: 700;">Serve & Deploy</h4>
+                                <p style="font-size: 0.5em; color: #166534; margin: 0.2em 0 0 0; line-height: 1.3;">Merge adapters<br>Test performance<br>Deploy model</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Call to Action -->
+                    <div style="text-align: center; margin-top: 1em;">
+                        <p style="font-size: 0.7em; color: #1e293b; font-weight: 600; margin: 0;">
+                            Ready to start cooking? Let's dive into the kitchen! 👨‍🍳
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- CSS Animation -->
+                <style>
+                    @keyframes float {
+                        0%, 100% { transform: translateY(0px); }
+                        50% { transform: translateY(-10px); }
+                    }
+                </style>
             </section>
 
             <!-- Closing Slide -->
