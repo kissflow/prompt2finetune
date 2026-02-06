@@ -18,17 +18,7 @@ For each commit, include:
 Look for commits mentioning WRK-1, WRK-2, or WRK-3.
 ```
 
-### Prompt 2: Search for Specific Commits
-```
-Search the kissflow/prompt2finetune repository (branch: workshop-sample)
-for these specific commits:
-- d30be37 (introduced WRK-1 bug)
-- 2e3fcd1 (fixed WRK-1)
-- 00bca23 (introduced WRK-2)
-- ef0c84b (investigating WRK-3)
 
-What does each commit do?
-```
 
 ---
 
