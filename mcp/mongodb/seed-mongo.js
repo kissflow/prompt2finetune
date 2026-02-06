@@ -40,7 +40,7 @@ async function seed() {
         assigned_to: "alice",
         stack_trace_url: "https://sentry.io/issues/12345",
         affected_users: 127,
-        commit_sha: "a7f4e2c", // Commit that introduced the bug
+        commit_sha: "d30be37", // Commit that introduced the bug
         github_pr: 1, // PR that fixed it
         resolved_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
         resolution_notes: "Fixed null check in processCart - deployed in v2.3.1"
@@ -59,7 +59,7 @@ async function seed() {
         assigned_to: "bob",
         stack_trace_url: "https://sentry.io/issues/12346",
         affected_users: 89,
-        commit_sha: "c9d1f88", // Commit that introduced the CDN switch
+        commit_sha: "00bca23", // Commit that introduced the CDN switch
         github_pr: 2, // PR attempting to fix (still open)
         resolution_notes: "Deployment v3.0.0 rolled back - investigating CDN configuration"
       },
@@ -97,7 +97,7 @@ async function seed() {
         deployed_at: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
         deployed_by: "alice",
         status: "success",
-        commit_sha: "b8e3d91", // The commit that FIXED WRK-1
+        commit_sha: "2e3fcd1", // The commit that FIXED WRK-1
         pr_number: 1,
         environment: "production",
         duration_seconds: 127,
@@ -111,7 +111,7 @@ async function seed() {
         deployed_at: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // 1 day ago
         deployed_by: "bob",
         status: "rollback",
-        commit_sha: "c9d1f88", // The commit that CAUSED WRK-2
+        commit_sha: "00bca23", // The commit that CAUSED WRK-2
         pr_number: null,
         environment: "production",
         duration_seconds: 45,
@@ -186,7 +186,13 @@ async function seed() {
     console.log(`   > db.deployments.find().pretty()`);
     console.log("\n🔗 Cross-reference test:");
     console.log(`   > db.production_bugs.findOne({ticket_id: "WRK-1"})`);
-    console.log(`   > db.deployments.findOne({commit_sha: "b8e3d91"})`);
+    console.log(`   > db.deployments.findOne({commit_sha: "2e3fcd1"})`);
+    console.log("\n📝 GitHub commits (workshop-sample branch):");
+    console.log(`   d30be37 - Add cart validation (introduced WRK-1)`);
+    console.log(`   2e3fcd1 - Fix null check - closes WRK-1`);
+    console.log(`   00bca23 - Switch CDN provider (introduced WRK-2)`);
+    console.log(`   4ea4fe2 - Add CDN retry logic - addresses WRK-2`);
+    console.log(`   ef0c84b - WIP: Investigate auth memory leak - WRK-3`);
     console.log("");
 
   } catch (error) {
