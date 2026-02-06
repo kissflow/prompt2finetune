@@ -1,0 +1,41 @@
+{
+  "mcpServers": {
+    "linear": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.linear.app/sse"],
+      "comment": "Linear MCP uses OAuth - no API key needed. Browser will open for authorization."
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "ghp_YOUR_GITHUB_TOKEN_HERE"
+      },
+      "comment": "Replace ghp_YOUR_GITHUB_TOKEN_HERE with your actual GitHub personal access token."
+    },
+    "mongodb": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mongodb-mcp-server",
+        "--connectionString",
+        "mongodb://localhost:27017/workshop_demo"
+      ],
+      "comment": "MongoDB connection string. Change if using MongoDB Atlas or different port."
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/YOUR_USERNAME/prompt2finetune/mcp/sample-project"
+      ],
+      "comment": "Replace /Users/YOUR_USERNAME/ with your actual home directory path. Must be absolute path."
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.notion.com/mcp"],
+      "comment": "Notion MCP uses OAuth - no API key needed. Browser will open for authorization."
+    }
+  }
+}

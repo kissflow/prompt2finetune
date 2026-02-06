@@ -1,0 +1,24 @@
+{
+  "name": "mcp-workshop-mongodb-seed",
+  "version": "1.0.0",
+  "description": "MongoDB seeding script for MCP workshop",
+  "main": "seed-mongo.js",
+  "scripts": {
+    "seed": "node seed-mongo.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mcp",
+    "mongodb",
+    "workshop",
+    "seed"
+  ],
+  "author": "MCP Workshop",
+  "license": "MIT",
+  "dependencies": {
+    "mongodb": "^6.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
