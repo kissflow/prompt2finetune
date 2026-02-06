@@ -91,14 +91,14 @@ if check_command mongosh; then
 
         # Check workshop database
         BUGS_COUNT=$(mongosh mongodb://localhost:27017/workshop_demo --eval "db.production_bugs.countDocuments()" --quiet 2>/dev/null)
-        if [ "$BUGS_COUNT" = "5" ]; then
-            print_success "workshop_demo database seeded ($BUGS_COUNT production bugs)"
+        if [ "$BUGS_COUNT" = "3" ]; then
+            print_success "workshop_demo database seeded ($BUGS_COUNT production bugs: WRK-1, WRK-2, WRK-3)"
         elif [ -n "$BUGS_COUNT" ]; then
-            print_warn "workshop_demo has $BUGS_COUNT bugs, expected 5"
-            print_info "Re-run: cd mongodb && node seed-mongo.js"
+            print_warn "workshop_demo has $BUGS_COUNT bugs, expected 3"
+            print_info "Re-run: cd mcp/mongodb && node seed-mongo.js"
         else
             print_fail "workshop_demo database not found"
-            print_info "Run: cd mongodb && npm install && node seed-mongo.js"
+            print_info "Run: cd mcp/mongodb && npm install && node seed-mongo.js"
         fi
     else
         print_fail "MongoDB not running on localhost:27017"
@@ -193,26 +193,7 @@ else
     print_info "Install Claude Desktop: https://claude.ai/download"
 fi
 
-# 5. Check sample project files
-print_header "Checking Sample Project Files"
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-PROJECT_DIR="$SCRIPT_DIR/../sample-project"
-
-if [ -d "$PROJECT_DIR" ]; then
-    FILES=("README.md" "CHANGELOG.md" "config.json")
-    for file in "${FILES[@]}"; do
-        if [ -f "$PROJECT_DIR/$file" ]; then
-            print_success "Found $file"
-        else
-            print_fail "Missing $file"
-        fi
-    done
-else
-    print_fail "Sample project directory not found"
-    print_info "Expected at: $PROJECT_DIR"
-fi
-
-# 6. Check GitHub CLI (optional)
+# 5. Check GitHub CLI (optional)
 print_header "Checking GitHub CLI (Optional)"
 if check_command gh; then
     GH_VERSION=$(gh --version | head -n 1)

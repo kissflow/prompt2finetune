@@ -25,10 +25,7 @@ Here's what I need:
    - Get the last 4 deployments from the `deployments` collection
    - Cross-reference: which bugs have commit_sha and github_pr fields linking to GitHub?
 
-4. **Filesystem**: Read these files from mcp/sample-project/ and mcp/workshop-code/:
-   - sample-project/README.md (ShopFlow architecture context)
-   - sample-project/CHANGELOG.md (recent changes)
-   - sample-project/config.json (current feature flags)
+4. **Filesystem**: Read these files from mcp/workshop-code/:
    - workshop-code/README.md (bug stories overview)
 
 5. **Notion**: Create a new Notion page called
