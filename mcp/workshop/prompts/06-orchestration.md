@@ -15,20 +15,21 @@ Here's what I need:
 1. **Linear**: Find all issues assigned to me in the current sprint for the
    "Workshop" team. List them with their priority, status, and description.
 
-2. **GitHub**: For the repository [YOUR_USERNAME/YOUR_REPO], check:
+2. **GitHub**: For the repository kissflow/prompt2finetune (branch: workshop-sample), check:
    - Any open pull requests
-   - Recent commits from the last 7 days
-   - Any open issues
+   - Recent commits from the last 7 days (look for WRK-1, WRK-2, WRK-3 mentions)
+   - Commits: d30be37, 2e3fcd1, 00bca23, 4ea4fe2, ef0c84b
 
 3. **MongoDB**: Query the `workshop_demo` database:
-   - Find all open critical and high severity bugs from the `production_bugs` collection
-   - Get the last 5 deployments from the `deployments` collection
-   - Cross-reference: which bugs are linked to my sprint tickets?
+   - Find all bugs from the `production_bugs` collection (WRK-1, WRK-2, WRK-3)
+   - Get the last 4 deployments from the `deployments` collection
+   - Cross-reference: which bugs have commit_sha and github_pr fields linking to GitHub?
 
-4. **Filesystem**: Read these files from my project directory:
-   - README.md (for architecture context)
-   - CHANGELOG.md (for recent changes)
-   - config.json (for current feature flags)
+4. **Filesystem**: Read these files from mcp/sample-project/ and mcp/workshop-code/:
+   - sample-project/README.md (ShopFlow architecture context)
+   - sample-project/CHANGELOG.md (recent changes)
+   - sample-project/config.json (current feature flags)
+   - workshop-code/README.md (bug stories overview)
 
 5. **Notion**: Create a new Notion page called
    "Sprint Kickoff - [Today's Date]" with a structured summary combining
@@ -60,31 +61,42 @@ Here's what I need:
 
 ### Prompt 2: Full Stack Bug Investigation
 ```
-Investigate the checkout crash bug (WRK-2) using all available data sources:
+Investigate the checkout crash bug (WRK-1) using all available data sources:
 
-1. **Linear**: Get full details of issue WRK-2
-   - What's the description?
-   - Priority and status?
-   - Who's assigned?
+1. **Linear**: Get full details of issue WRK-1
+   - Title: "Fix checkout crash on mobile Safari"
+   - Priority: Critical
+   - Status: Should be "In Progress" or "Done"
 
-2. **MongoDB**: Query production_bugs for the related bug
-   - Error count and trend
-   - When first and last seen?
-   - How many users affected?
+2. **MongoDB**: Query production_bugs for ticket_id "WRK-1"
+   - Error count: 342 errors
+   - Affected users: 127
+   - Note the commit_sha field: d30be37 (bug introduced)
+   - Note the github_pr field: 1 (PR that fixed it)
+   - Status: resolved (fixed 2 days ago)
 
-3. **GitHub**: Search [YOUR_REPO] for:
-   - Recent commits to checkout-service
-   - Any open PRs related to checkout
-   - Code containing "checkout" or "processCart"
+3. **GitHub**: Search kissflow/prompt2finetune (branch: workshop-sample) for:
+   - Commit d30be37: "Add cart validation" (introduced bug)
+   - Commit 2e3fcd1: "Fix null check in processCart - closes WRK-1" (fixed bug)
+   - Read file: mcp/workshop-code/checkout-service/checkout.js
 
-4. **Filesystem**: Read CHANGELOG.md
-   - Was this bug mentioned in recent releases?
-   - Any related fixes deployed?
+4. **Filesystem**: Read mcp/sample-project/CHANGELOG.md
+   - Check version v2.3.1 entry
+   - Should mention the checkout fix
 
-5. **Notion**: Create an incident report page summarizing all findings with:
-   - Timeline of the bug
-   - Code changes that might have introduced it
-   - Current status and next steps
+5. **MongoDB**: Verify the fix was deployed
+   - Query deployments where service = "checkout-service"
+   - Find version v2.3.1 with commit_sha "2e3fcd1"
+   - Status should be "success"
+
+6. **Notion**: Create an incident report page "WRK-1: Checkout Crash Analysis" with:
+   - **Bug**: Null pointer crash on mobile Safari (342 errors, 127 users affected)
+   - **Root Cause**: Missing null check on cart object (code from commit d30be37)
+   - **Fix**: Added null validation (commit 2e3fcd1, PR #1)
+   - **Status**: ✅ Fixed and deployed in v2.3.1 on [2 days ago date]
+   - **Timeline**: First seen 3 days ago → Fixed 2 days ago
+
+This demonstrates COMPLETE cross-system data correlation!
 ```
 
 ### Prompt 3: Untracked Issues Workflow
@@ -283,42 +295,65 @@ We have a production emergency! Help me triage:
 
 ### Prompt 10: Post-Incident Review
 ```
-Create a post-incident review for the checkout crash (WRK-2):
+Create a post-incident review for the checkout crash (WRK-1):
 
-1. **Linear**: Get issue WRK-2 full history
-   - When was it created?
-   - What was done to fix it?
-   - Current status
+1. **Linear**: Get issue WRK-1 full history
+   - Title: "Fix checkout crash on mobile Safari"
+   - Priority: Critical
+   - Created: 3 days ago
+   - Current status: Fixed
 
-2. **MongoDB**: Get bug data
-   - Error count before and after fix
-   - Timeline of occurrences
+2. **MongoDB**: Get bug data for ticket_id "WRK-1"
+   - Error count: 342 errors
+   - Affected users: 127
+   - First seen: 3 days ago
+   - Last seen: 2 days ago (when fixed)
+   - commit_sha: d30be37 (introduced bug)
+   - github_pr: 1 (fix)
+   - Status: resolved
 
-3. **GitHub**: Find the fix
-   - Which PR fixed it?
-   - What code changed?
+3. **GitHub**: Find the bug introduction and fix
+   - Commit d30be37: "Add cart validation" - introduced null pointer bug
+   - Commit 2e3fcd1: "Fix null check in processCart - closes WRK-1" - fixed it
+   - Read mcp/workshop-code/checkout-service/checkout.js to see the fix
 
-4. **Filesystem**: Read CHANGELOG
-   - Was it documented as a hotfix?
+4. **MongoDB**: Check deployment
+   - Query deployments for checkout-service v2.3.1
+   - Deployed 2 days ago with commit 2e3fcd1
+   - Status: success
 
-5. **Notion**: Create "Post-Incident Review - Checkout Crash" with:
+5. **Filesystem**: Read mcp/sample-project/CHANGELOG.md
+   - Should document v2.3.1 with checkout fix
+
+6. **Notion**: Create "Post-Incident Review - WRK-1 Checkout Crash" with:
    ## Incident Summary
-   [What happened]
+   Null pointer crash on mobile Safari affecting checkout flow. 342 errors, 127 users impacted.
 
    ## Timeline
-   [First seen → Detected → Fixed → Deployed]
+   - Day -3: First seen after deployment with commit d30be37
+   - Day -2: Bug identified as WRK-1, fix deployed in v2.3.1 (commit 2e3fcd1)
+   - Day -2: Last error seen - issue resolved
 
    ## Root Cause
-   [Code that caused it]
+   Commit d30be37 added cart validation but introduced a bug: missing null check
+   before accessing cart.items property. Mobile Safari occasionally sends null
+   cart when localStorage sync fails.
 
    ## Resolution
-   [How it was fixed]
+   Commit 2e3fcd1 added null check: `if (!cart || !cart.items)` before processing.
+   Deployed in checkout-service v2.3.1. No more errors since deployment.
 
    ## Lessons Learned
-   [What to do differently]
+   - Need better null safety in JavaScript code
+   - Mobile browser edge cases should be tested
+   - Quick turnaround (24 hours from detection to fix) worked well
 
    ## Action Items
-   [Preventive measures]
+   - [ ] Add null check linting rules to prevent similar issues
+   - [ ] Create mobile Safari testing checklist
+   - [ ] Document common mobile browser gotchas
+
+This demonstrates the COMPLETE story from bug → fix → deployment!
 ```
 
 ---

@@ -178,21 +178,28 @@ What changed?
 ### Prompt 18: GitHub + Linear Cross-Reference
 ```
 1. Get Linear issue WRK-2 details
-2. Search GitHub [YOUR_USERNAME/YOUR_REPO] for:
+2. Search GitHub kissflow/prompt2finetune (branch: workshop-sample) for:
    - Commits mentioning "WRK-2"
    - PRs with "WRK-2" in title or description
-   - Code changes related to the bug description
+   - Code changes related to the CDN issue
 
 3. Summarize: Is there already work happening on this issue?
+
+Expected commits to find:
+- 00bca23 - Switch CDN provider (introduced the bug)
+- 4ea4fe2 - Add CDN retry logic (attempted fix)
 ```
 
 ### Prompt 19: GitHub + MongoDB Investigation
 ```
-1. Query MongoDB workshop_demo.production_bugs for the checkout crash bug
-2. Note which service is affected (checkout-service)
-3. Search GitHub [YOUR_USERNAME/YOUR_REPO] for recent commits to
-   files in the checkout-service directory
-4. Show me the 5 most recent commits - any potential culprits?
+1. Query MongoDB workshop_demo.production_bugs for the checkout crash bug (ticket_id: WRK-1)
+2. Note the commit_sha field in the bug record (d30be37)
+3. Search GitHub kissflow/prompt2finetune (branch: workshop-sample) for:
+   - Commit d30be37 (the one that introduced the bug)
+   - Commit 2e3fcd1 (the fix)
+4. Read the mcp/workshop-code/checkout-service/checkout.js file
+
+Connect the dots: MongoDB error → GitHub commits → Actual code with bug/fix
 ```
 
 ### Prompt 20: Release Notes Generation
@@ -213,12 +220,16 @@ Format as markdown suitable for GitHub release.
 **Task:** Investigate the checkout crash bug using GitHub
 
 ```
-The checkout crash bug (WRK-2) is affecting checkout-service.
+The checkout crash bug (WRK-1) is affecting checkout-service.
 
-1. Search [YOUR_USERNAME/YOUR_REPO] for all files related to "checkout"
-2. Show me recent commits to these files (last 14 days)
-3. Check if there are any open PRs addressing checkout issues
-4. Based on this, what's the likely root cause?
+1. Search kissflow/prompt2finetune (branch: workshop-sample) for files containing "checkout"
+2. Look at commits mentioning "WRK-1" in the message
+3. Find commits d30be37 (introduced bug) and 2e3fcd1 (fixed it)
+4. Read mcp/workshop-code/checkout-service/checkout.js
+
+What was the bug? How was it fixed?
+
+Expected finding: Null pointer crash due to missing cart validation
 ```
 
 ### Exercise 2: Code Review Prep
