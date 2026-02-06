@@ -127,10 +127,10 @@ function checkMongoDB() {
   const dbCheck = exec('mongosh mongodb://localhost:27017/workshop_demo --eval "db.production_bugs.countDocuments()" --quiet');
   if (dbCheck) {
     const count = parseInt(dbCheck);
-    if (count === 5) {
+    if (count === 3) {
       success(`workshop_demo database seeded (${count} production bugs)`);
     } else {
-      warn(`workshop_demo has ${count} bugs, expected 5`);
+      warn(`workshop_demo has ${count} bugs, expected 3`);
       info('Re-run seeding: cd mongodb && node seed-mongo.js');
     }
 
@@ -146,25 +146,6 @@ function checkMongoDB() {
   return true;
 }
 
-function checkSampleProjectFiles() {
-  header('🔍 Checking Sample Project Files');
-
-  const projectDir = path.join(__dirname, '..', 'sample-project');
-  const requiredFiles = ['README.md', 'CHANGELOG.md', 'config.json'];
-
-  let allFound = true;
-  for (const file of requiredFiles) {
-    const filePath = path.join(projectDir, file);
-    if (fs.existsSync(filePath)) {
-      success(`Found ${file}`);
-    } else {
-      fail(`Missing ${file}`);
-      allFound = false;
-    }
-  }
-
-  return allFound;
-}
 
 function checkClaudeDesktopConfig() {
   header('🔍 Checking Claude Desktop Configuration');
@@ -323,7 +304,6 @@ async function main() {
 
   checkNodeVersion();
   checkMongoDB();
-  checkSampleProjectFiles();
   checkClaudeDesktopConfig();
   checkGitHubCLI();
   checkDocker();

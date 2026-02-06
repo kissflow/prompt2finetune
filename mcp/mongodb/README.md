@@ -15,36 +15,6 @@ npm install
 node seed-mongo.js
 ```
 
-## What Gets Created
-
-The seeding script creates a database called `workshop_demo` with two collections:
-
-### 1. `production_bugs` Collection (5 documents)
-
-Sample production bugs for the e-commerce platform:
-
-| Ticket ID | Title | Severity | Error Count | Status |
-|-----------|-------|----------|-------------|--------|
-| WRK-2 | Checkout crash on mobile Safari | Critical | 342 | Open |
-| WRK-4 | DB migration timeout | High | 28 | Open |
-| WRK-6 | Image CDN 503 errors | High | 156 | Investigating |
-| (null) | Auth service memory leak | **Critical** | 89 | Open |
-| (null) | Slow dashboard query | Medium | 412 | Open |
-
-**Key insight**: Two critical bugs (auth memory leak and checkout crash) don't have ticket IDs yet - they'll be discovered during the workshop!
-
-### 2. `deployments` Collection (4 documents)
-
-Recent deployments across microservices:
-
-| Service | Version | Status | Deployed | Notes |
-|---------|---------|--------|----------|-------|
-| checkout-service | v2.3.1 | Success | 2 days ago | Hotfix for iOS crash |
-| auth-service | v1.8.0 | Success | 4 days ago | OAuth2 support |
-| media-service | v3.0.0 | **Rollback** | 1 day ago | CDN 503 errors |
-| user-service | v2.1.5 | Success | 6 days ago | Dashboard performance |
-
-**Key insight**: media-service was rolled back yesterday due to CDN issues (relates to WRK-6 bug).
 
 ## MongoDB Installation
 
@@ -81,18 +51,6 @@ brew services start mongodb-community@7.0
 mongosh --eval "db.version()"
 ```
 
-#### Ubuntu/Debian
-```bash
-wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
-sudo systemctl start mongod
-sudo systemctl enable mongod
-
-# Verify
-mongosh --eval "db.version()"
-```
 
 #### Windows
 1. Download MongoDB Community Server: https://www.mongodb.com/try/download/community
@@ -104,22 +62,7 @@ mongosh --eval "db.version()"
    mongosh --eval "db.version()"
    ```
 
-### Option C: MongoDB Atlas (Cloud)
 
-For cloud-based MongoDB:
-
-1. Sign up at https://www.mongodb.com/cloud/atlas
-2. Create a free M0 cluster
-3. Get connection string from "Connect" button
-4. Update connection string in `seed-mongo.js`:
-   ```javascript
-   const uri = "mongodb+srv://username:password@cluster.mongodb.net/workshop_demo?retryWrites=true&w=majority";
-   ```
-5. Run seeding script: `node seed-mongo.js`
-
-## Verification
-
-After seeding, verify the data:
 
 ```bash
 # Connect to MongoDB

@@ -221,7 +221,6 @@ You'll need accounts and API keys for 5 services. **Linear and Notion** use OAut
   Service: auth-service
   ```
 
-**Note:** If your team uses a different prefix (e.g., "SHOP" instead of "WRK"), your issues will be SHOP-1, SHOP-2, SHOP-3. You'll need to update the MongoDB seed script and workshop prompts to match your prefix.
 
 ### 5.2 GitHub Personal Access Token
 
@@ -472,4 +471,3 @@ Before the workshop starts, verify:
 - [ ] Filesystem can read sample-project/README.md
 - [ ] Verification script passes all checks
 
-**✅ Ready?** → [Start the Workshop](workshop/demo-script.md)

@@ -143,13 +143,20 @@ Connects Claude to GitHub repositories.
 
 **Configuration:**
 ```json
-"github": {
-  "command": "npx",
-  "args": ["-y", "@modelcontextprotocol/server-github"],
-  "env": {
-    "GITHUB_PERSONAL_ACCESS_TOKEN": "ghp_YOUR_TOKEN_HERE"
-  }
-}
+    "github": {                                                                                                                                                                                                                                    
+        "command": "docker",                                                                                                                                                                                                                         
+        "args": [                                                                                                                                                                                                                                    
+          "run",                                                                                                                                                                                                                                     
+          "-i",                                                                                                                                                                                                                                      
+          "--rm",                                                                                                                                                                                                                                    
+          "-e",                                                                                                                                                                                                                                      
+          "GITHUB_PERSONAL_ACCESS_TOKEN",                                                                                                                                                                                                            
+          "ghcr.io/github/github-mcp-server"                                                                                                                                                                                                         
+        ],                                                                                                                                                                                                                                           
+        "env": {                                                                                                                                                                                                                                     
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "GITHUB_PERSONAL_ACCESS_TOKEN"                                                                                                                                                                                      
+        }                                                                                                                                                                                                                                            
+      },   
 ```
 
 **⚠️ Security:**
@@ -214,30 +221,6 @@ Connects Claude to MongoDB databases for queries.
 }
 ```
 
-**Configuration (MongoDB Atlas):**
-```json
-"mongodb": {
-  "command": "npx",
-  "args": [
-    "-y",
-    "mongodb-mcp-server",
-    "--connectionString",
-    "mongodb+srv://username:password@cluster.mongodb.net/workshop_demo?retryWrites=true&w=majority"
-  ]
-}
-```
-
-**Configuration (With Authentication):**
-```json
-"mongodb": {
-  "command": "npx",
-  "args": [
-    "-y",
-    "mongodb-mcp-server",
-    "--connectionString",
-    "mongodb://username:password@localhost:27017/workshop_demo?authSource=admin"
-  ]
-}
 ```
 
 ### Seed Sample Data
