@@ -16,8 +16,8 @@ These files are used by the **Filesystem MCP server** to demonstrate:
 
 A null pointer crash on mobile Safari affecting the cart checkout flow.
 
-**Bug introduced:** Commit `a7f4e2c` - "Add cart validation"
-**Bug fixed:** Commit `b8e3d91` - "Fix null check in processCart - closes WRK-1"
+**Bug introduced:** Commit `d30be37` - "Add cart validation"
+**Bug fixed:** Commit `2e3fcd1` - "Fix null check in processCart - closes WRK-1"
 
 **MongoDB Bug:** `ticket_id: WRK-1`, 342 errors
 **Linear Ticket:** WRK-1 (Critical, In Progress)
@@ -30,8 +30,8 @@ A null pointer crash on mobile Safari affecting the cart checkout flow.
 
 Image CDN returning 503 errors under load after switching providers.
 
-**Bug introduced:** Commit `c9d1f88` - "Switch CDN provider"
-**Attempted fix:** Commit `d1a5c42` - "Add CDN retry logic - WRK-2"
+**Bug introduced:** Commit `00bca23` - "Switch CDN provider"
+**Attempted fix:** Commit `4ea4fe2` - "Add CDN retry logic - WRK-2"
 
 **MongoDB Bug:** `ticket_id: WRK-2`, 156 errors
 **Linear Ticket:** WRK-2 (High, In Progress)
@@ -45,8 +45,8 @@ Image CDN returning 503 errors under load after switching providers.
 
 Memory leak in authentication session handler causing heap exhaustion.
 
-**Investigation:** Commit `e2b9f33` - "WIP: Investigate auth memory leak - WRK-3"
-**Fix attempt:** Commit `f3c1a77` - "Add session cleanup on disconnect - WRK-3"
+**Investigation:** Commit `ef0c84b` - "WIP: Investigate auth memory leak - WRK-3"
+**Fix attempt:** Commit `4ea4fe2` - "Add session cleanup on disconnect - WRK-3" (included in all workshop files commit)
 
 **MongoDB Bug:** `ticket_id: WRK-3`, 89 errors
 **Linear Ticket:** WRK-3 (Critical, Todo)
@@ -94,14 +94,13 @@ workshop-code/
 
 These files are tracked in the `workshop-sample` branch with commit history that matches the stories:
 
-- `a7f4e2c` - Add cart validation (introduced WRK-1 bug)
-- `b8e3d91` - Fix null check in processCart - closes WRK-1
-- `c9d1f88` - Switch CDN provider (introduced WRK-2)
-- `d1a5c42` - Add CDN retry logic - WRK-2
-- `e2b9f33` - WIP: Investigate auth memory leak - WRK-3
-- `f3c1a77` - Add session cleanup on disconnect - WRK-3
+- `d30be37` - Add cart validation (introduced WRK-1 bug)
+- `2e3fcd1` - Fix null check in processCart - closes WRK-1
+- `00bca23` - Switch CDN provider (introduced WRK-2)
+- `4ea4fe2` - Add CDN retry logic - addresses WRK-2
+- `ef0c84b` - WIP: Investigate auth memory leak - WRK-3
 
-**Note:** Once actual commits are created, these SHAs will be updated to match real commit hashes.
+**View commits:** `git log --oneline workshop-sample`
 
 ---
 
