@@ -5,8 +5,8 @@
  * Process cart and prepare for payment
  *
  * BUG HISTORY (WRK-1):
- * - Commit a7f4e2c: Added cart validation but introduced null pointer bug
- * - Commit b8e3d91: Fixed null check - now deployed in v2.3.1
+ * - Commit d30be37: Added cart validation but introduced null pointer bug
+ * - Commit 2e3fcd1: Fixed null check - now deployed in v2.3.1
  */
 
 class CheckoutService {
@@ -31,7 +31,7 @@ class CheckoutService {
    */
   async processCart(cart, userId) {
     // ============================================================
-    // FIX for WRK-1 (Commit b8e3d91)
+    // FIX for WRK-1 (Commit 2e3fcd1)
     // Added null check to prevent crash on mobile Safari
     // ============================================================
     if (!cart || !cart.items) {
@@ -143,6 +143,6 @@ module.exports = CheckoutService;
 // Cross-system links:
 // - Linear Ticket: WRK-1 (Critical, Fixed)
 // - MongoDB Bug: ticket_id "WRK-1", 342 errors
-// - GitHub Commit: a7f4e2c (introduced bug), b8e3d91 (fixed)
+// - GitHub Commit: d30be37 (introduced bug), 2e3fcd1 (fixed)
 // - Deployment: checkout-service v2.3.1 (includes fix)
 // ============================================================

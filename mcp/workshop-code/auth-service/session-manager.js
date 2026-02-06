@@ -6,8 +6,8 @@
  *
  * BUG HISTORY (WRK-3):
  * - Memory leak discovered 1 day ago
- * - Commit e2b9f33: WIP investigation (PR #3 draft)
- * - Commit f3c1a77: Added cleanup logic (under testing)
+ * - Commit ef0c84b: WIP investigation (PR #3 draft)
+ * - Commit 4ea4fe2: Added cleanup logic (under testing)
  */
 
 class SessionManager {
@@ -105,7 +105,7 @@ class SessionManager {
    * Destroy session
    *
    * ============================================================
-   * ATTEMPTED FIX for WRK-3 (Commit f3c1a77 - PR #3)
+   * ATTEMPTED FIX for WRK-3 (Commit 4ea4fe2 - PR #3)
    * Added cleanup logic, but still incomplete
    * ============================================================
    */
@@ -168,7 +168,7 @@ class SessionManager {
    * Handle connection disconnect
    *
    * ============================================================
-   * INCOMPLETE FIX (Commit f3c1a77)
+   * INCOMPLETE FIX (Commit 4ea4fe2)
    * Added this method but it's not always called
    * Need WebSocket/HTTP server integration
    * ============================================================
@@ -231,7 +231,7 @@ module.exports = SessionManager;
 // Cross-system links:
 // - Linear Ticket: WRK-3 (Critical, Todo)
 // - MongoDB Bug: ticket_id "WRK-3", 89 errors
-// - GitHub Commits: e2b9f33 (investigation), f3c1a77 (attempted fix)
+// - GitHub Commits: ef0c84b (investigation), 4ea4fe2 (attempted fix)
 // - GitHub PR: #3 (Draft)
 // - Deployment: Pending (auth-service still on v1.8.0)
 // ============================================================

@@ -5,8 +5,8 @@
  * CDN Handler for product images and media assets
  *
  * BUG HISTORY (WRK-2):
- * - Commit c9d1f88: Switched from CloudFlare to Fastly CDN
- * - Commit d1a5c42: Added retry logic (PR #2 - under review)
+ * - Commit 00bca23: Switched from CloudFlare to Fastly CDN
+ * - Commit 4ea4fe2: Added retry logic (PR #2 - under review)
  * - DEPLOYMENT: v3.0.0 rolled back due to 503 errors under load
  */
 
@@ -34,7 +34,7 @@ class CDNHandler {
    */
   async fetchAsset(assetPath) {
     // ============================================================
-    // ATTEMPTED FIX for WRK-2 (Commit d1a5c42 - PR #2)
+    // ATTEMPTED FIX for WRK-2 (Commit 4ea4fe2 - PR #2)
     // Added retry logic with exponential backoff
     // ISSUE: Doesn't fully solve the problem - CDN origin misconfigured
     // ============================================================
@@ -98,7 +98,7 @@ class CDNHandler {
   async uploadAsset(assetPath, data) {
     try {
       // ============================================================
-      // ORIGINAL BUG (Commit c9d1f88)
+      // ORIGINAL BUG (Commit 00bca23)
       // Switched CDN provider from CloudFlare to Fastly
       // This CDN configuration doesn't handle load properly
       // ============================================================
@@ -169,7 +169,7 @@ module.exports = CDNHandler;
 // Cross-system links:
 // - Linear Ticket: WRK-2 (High, In Progress)
 // - MongoDB Bug: ticket_id "WRK-2", 156 errors
-// - GitHub Commit: c9d1f88 (CDN switch), d1a5c42 (retry logic)
+// - GitHub Commit: 00bca23 (CDN switch), 4ea4fe2 (retry logic)
 // - GitHub PR: #2 (Open - under review)
 // - Deployment: v3.0.0 rolled back, v2.9.5 currently running
 //
