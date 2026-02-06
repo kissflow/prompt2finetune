@@ -573,8 +573,4 @@ This is the complete workflow a real engineer might do every Monday!
 
 ---
 
-**This is where MCP shines!** You just described what you need, and Claude orchestrates 5+ different tools to make it happen. No API documentation. No code. Just natural language. 🎉
-
 ---
-
-**Back to:** [Workshop Demo Script](../demo-script.md) | [Main README](../../README.md)
