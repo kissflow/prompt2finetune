@@ -1,17 +1,5 @@
 # Workshop Prerequisites
 
-Complete these setup steps before the workshop begins. Allow **30-45 minutes** for first-time setup.
-
-## ✅ Checklist Overview
-
-- [ ] System requirements met (Node.js v18+, terminal access)
-- [ ] Claude Desktop installed and running
-- [ ] MongoDB installed and running
-- [ ] 5 MCP servers installed
-- [ ] API keys acquired and configured
-- [ ] Sample data seeded
-- [ ] Verification tests passed
-
 ---
 
 ## 1. System Requirements
@@ -93,7 +81,6 @@ code ~/.config/Claude/claude_desktop_config.json
 
 ## 3. MongoDB Installation
 
-You'll use MongoDB to query production data during the workshop. Choose **Option A** (Docker - easiest) or **Option B** (local install).
 
 ### Option A: MongoDB with Docker (Recommended)
 
@@ -127,15 +114,6 @@ mongosh mongodb://localhost:27017
 brew tap mongodb/brew
 brew install mongodb-community@7.0
 brew services start mongodb-community@7.0
-```
-
-**Ubuntu:**
-```bash
-wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu $(lsb_release -cs)/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
-sudo apt-get update
-sudo apt-get install -y mongodb-org
-sudo systemctl start mongod
 ```
 
 **Windows:**
@@ -191,16 +169,59 @@ You'll need accounts and API keys for 5 services. **Linear and Notion** use OAut
 ### 5.1 Linear (OAuth - No API Key Needed)
 
 1. Sign up: https://linear.app (free plan)
-2. Create a workspace and team called **"Workshop"**
-3. Create 5-10 sample issues in the Workshop team
+2. Create a workspace and team called **"Workshop"** (or any name you prefer)
+3. Set your team **identifier/prefix** to **"WRK"** (Settings → Teams → Your Team → Identifier)
 4. When you first use the Linear MCP server, a browser will open asking you to authorize - just click "Allow"
 
-**Sample issues to create:**
-- "Implement user authentication API" (Priority: Urgent, Status: Todo)
-- "Fix checkout page crash on mobile" (Priority: High, Status: Todo)
-- "Add dark mode support" (Priority: Medium, Status: In Progress)
-- "Database migration for v2.0 schema" (Priority: High, Status: Todo)
-- "Write API documentation for /payments" (Priority: Low, Status: Backlog)
+**Create these 3 specific issues (they match the workshop MongoDB data):**
+
+**Issue 1: WRK-1**
+- **Title:** "Fix checkout crash on mobile Safari"
+- **Priority:** Critical (🔴)
+- **Status:** In Progress
+- **Assignee:** You
+- **Description:**
+  ```
+  Null pointer crash affecting checkout flow on mobile Safari.
+
+  Error: TypeError: Cannot read property 'items' of null at processCart (checkout.js:127)
+
+  Impact: 342 errors, 127 users affected
+  Service: checkout-service
+  ```
+
+**Issue 2: WRK-2**
+- **Title:** "Investigate CDN 503 errors under load"
+- **Priority:** High (🟡)
+- **Status:** In Progress
+- **Assignee:** You
+- **Description:**
+  ```
+  Image CDN returning 503 errors under load after switching to Fastly.
+
+  Error: Service Unavailable: CDN origin server not responding
+
+  Impact: 156 errors, 89 users affected
+  Service: media-service
+  Deployment: v3.0.0 rolled back to v2.9.5
+  ```
+
+**Issue 3: WRK-3**
+- **Title:** "Fix auth service memory leak"
+- **Priority:** Critical (🔴)
+- **Status:** Todo
+- **Assignee:** You
+- **Description:**
+  ```
+  Memory leak in auth session handler causing heap exhaustion.
+
+  Error: FATAL ERROR: Reached heap limit Allocation failed - JavaScript heap out of memory
+
+  Impact: 89 crashes, 234 users disconnected
+  Service: auth-service
+  ```
+
+**Note:** If your team uses a different prefix (e.g., "SHOP" instead of "WRK"), your issues will be SHOP-1, SHOP-2, SHOP-3. You'll need to update the MongoDB seed script and workshop prompts to match your prefix.
 
 ### 5.2 GitHub Personal Access Token
 
@@ -228,12 +249,6 @@ If using local MongoDB or Docker (as instructed above):
 ```
 mongodb://localhost:27017/workshop_demo
 ```
-
-If using MongoDB Atlas (cloud):
-1. Sign up: https://www.mongodb.com/cloud/atlas
-2. Create a free cluster
-3. Get connection string from "Connect" button
-4. Replace `<password>` with your actual password
 
 ---
 
