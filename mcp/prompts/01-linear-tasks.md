@@ -8,13 +8,13 @@ Copy-pasteable prompts for Linear integration demos and exercises.
 
 ### Prompt 1: List All Issues
 ```
-Show me all issues in the Workshop team in Linear.
+Show me all issues in the Demoworkshop team in Linear.
 Group them by priority and show the status of each.
 ```
 
 ### Prompt 2: Filter by Priority
 ```
-Show me all urgent and high priority issues in the Workshop team.
+Show me all urgent and high priority issues in the Demoworkshop team.
 For each issue, include:
 - Issue ID and title
 - Current status
