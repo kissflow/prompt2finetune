@@ -34,20 +34,20 @@ Practical AI: From Prompting to Fine-Tuning
 
 
 ### Prompting Strategies
-<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Prompting_Strategy.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/Prompting_Strategy.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ### RAG Implementation
-<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Product_Review_using_RAG.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/Product_Review_using_RAG.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 ### Agent Implementation
-<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/L1_Support_Agent_CrewAI.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/L1_Support_Agent_CrewAI.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ### Finetuning:
-- Before Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Llama_4bit_Before_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Before Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/Llama_4bit_Before_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-- After Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Llama_4bit_after_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- After Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/Llama_4bit_after_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 - Click on Connect and `Select Change runtime type`
 ![alt text](images//connect.png)
