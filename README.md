@@ -6,7 +6,7 @@ Practical AI: From Prompting to Fine-Tuning
 
   - Sign up to <a href="https://colab.research.google.com/" target="_blank">https://colab.research.google.com/</a>
 
-- Setup openrouter (to play with AI)
+<!-- - Setup openrouter (to play with AI)
 
   - Sign up to <a href="https://openrouter.ai/" target="_blank">https://openrouter.ai/</a>
   
@@ -17,14 +17,14 @@ Practical AI: From Prompting to Fine-Tuning
   ![alt text](images//createkey.png)
 
   - copy the created key
-  ![alt text](images//key-copy.png)
+  ![alt text](images//key-copy.png) -->
 
   - Goto <a href="https://colab.research.google.com/" target="_blank">colab</a> and click on the `key` icon on the left menu.
   ![alt text](images//setup-key.png)
 
   - Click on the `Add New Secret`.
 
-  - Give Secret `Name` as `API_KEY` and set `Value` to the key we have created in openrouter.
+  - Give Secret `Name` as `API_KEY` and set `Value` to the key `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`.
 
   - Turn on the `Note Book Access` toggle to allow this secret to consume in the colab notebooks.
 
