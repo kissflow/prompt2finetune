@@ -34,7 +34,7 @@ Practical AI: From Prompting to Fine-Tuning
 
 
 ### Prompting Strategies
-<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Prompting_Strategy.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/Prompting_Strategy.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ### RAG Implementation
