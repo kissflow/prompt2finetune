@@ -38,10 +38,10 @@ Practical AI: From Prompting to Fine-Tuning
 
 
 ### RAG Implementation
-<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Product_Review_using_RAG.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/Product_Review_using_RAG.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 ### Agent Implementation
-<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/L1_Support_Agent_CrewAI.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/L1_Support_Agent_CrewAI.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ### Finetuning:
