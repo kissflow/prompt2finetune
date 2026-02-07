@@ -24,27 +24,30 @@ Practical AI: From Prompting to Fine-Tuning
 
   - Click on the `Add New Secret`.
 
-  - Give Secret `Name` as `API_KEY` and set `Value` to the key `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`.
+  - Give Secret `Name` as `API_KEY` and set `Value` to the key
+    ```javascript
+    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
+    ```
 
   - Turn on the `Note Book Access` toggle to allow this secret to consume in the colab notebooks.
 
 
 
 ### Prompting Strategies
-<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Prompting_Strategy.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/Prompting_Strategy.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ### RAG Implementation
-<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Product_Review_using_RAG.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/Product_Review_using_RAG.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 ### Agent Implementation
-<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/L1_Support_Agent_CrewAI.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+<a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/L1_Support_Agent_CrewAI.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ### Finetuning:
-- Before Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Llama_4bit_Before_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Before Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/Llama_4bit_Before_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
-- After Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/main/Llama_4bit_after_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- After Finetuning <a href="https://colab.research.google.com/github/kissflow/prompt2finetune/blob/master/Llama_4bit_after_tuning.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 - Click on Connect and `Select Change runtime type`
 ![alt text](images//connect.png)
