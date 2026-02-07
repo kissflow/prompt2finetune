@@ -59,3 +59,18 @@ Practical AI: From Prompting to Fine-Tuning
 
 - Delete the runtime
 ![alt text](images//deleteruntime.png)
+
+
+
+- Setup openrouter (to play with AI)
+
+  - Sign up to <a href="https://openrouter.ai/" target="_blank">https://openrouter.ai/</a>
+  
+  - click on the profile icon and click on the `key` menu
+  ![alt text](images//openrouterkey.png)
+  
+  - click on the `create new key` button and fill up the name and leave the next fields blank and click on create. Copy the key and paste it in the any notepad
+  ![alt text](images//createkey.png)
+
+  - copy the created key
+  ![alt text](images//key-copy.png)
