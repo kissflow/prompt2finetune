@@ -24,10 +24,7 @@ Practical AI: From Prompting to Fine-Tuning
 
   - Click on the `Add New Secret`.
 
-  - Give Secret `Name` as `API_KEY` and set `Value` to the key
-    ```javascript
-    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
-    ```
+  - Give Secret `Name` as `API_KEY` and set `Value` to the key "will be shared via QR Code"
 
   - Turn on the `Note Book Access` toggle to allow this secret to consume in the colab notebooks.
 
